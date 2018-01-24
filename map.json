@@ -1,0 +1,95 @@
+{
+  "lines": [{
+    "name": "Adventureland",
+    "stops": [
+      "Country Bear Jamboree",
+      "Pecos Bill",
+      "Pirates of the Caribbean",
+      "Tortuga Tavern",
+      "Enchanted Tiki Room",
+      "Jungle Cruise",
+      "Swiss Family Treehouse"
+    ],
+    "stations": [
+      "Castle",
+      "Liberty Square Riverboat",
+      "WDW Railroad (West)"
+    ]
+  }, {
+    "name": "Frontierland",
+    "stops": [
+      "Splash Mountain",
+      "Tom Sawyer Rafts",
+      "Big Thunder Mountain"
+    ],
+    "stations": [
+      "Castle",
+      "Liberty Square Riverboat",
+      "WDW Railroad (West)"
+    ]
+  }, {
+    "name": "Libery Square",
+    "stops": [
+      "Christmas Shoppe",
+      "Hall of Presidents",
+      "Liberty Tree Tavern",
+      "Liberty Square Riverboat",
+      "Haunted Mansion"
+    ],
+    "stations": [
+      "Castle",
+      "Liberty Square Riverboat"
+    ]
+  }, {
+    "name": "Fantasyland",
+    "stops": [
+      "Cinderella's Royal Table",
+      "Prince Charming Carousel",
+      "Peter Pan's Flight",
+      "it's a small world",
+      "Enchanted Tales",
+      "Be Our Guest",
+      "Gaston's Tavern",
+      "Under the Sea",
+      "Big Top Souveniers",
+      "Dumbo",
+      "Pete's Silly Sideshow",
+      "Barnstormer",
+      "Seven Dwarfs Mine Train"
+    ],
+    "stations": [
+      "Castle",
+      "WDW Railroad (East)"
+    ]
+  }, {
+    "name": "Tomorrowland",
+    "stops": [
+      "Tomorrowland Terrace",
+      "Monster's Inc Laugh Floor",
+      "Buzz Lightyear Space Ranger Spin",
+      "Astro Orbit People Mover",
+      "Carousel of Progress",
+      "Space Mountain",
+      "Tomorrowland Speedway",
+      "Cosmic Starlight Cafe"
+    ],
+    "stations": [
+      "Castle",
+      "WDW Railroad (East)???"
+    ]
+  }, {
+    "name": "Main Street, USA",
+    "stops": [
+      "Crystal Palace",
+      "Casey's Corner",
+      "Main Street Bakery",
+      "Emporium",
+      "Town Square Theatre",
+      "City Hall"
+    ],
+    "stations": [
+      "Castle",
+      "WDW Railroad (South)"
+    ]
+  }]
+}
