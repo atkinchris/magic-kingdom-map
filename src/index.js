@@ -1,3 +1,5 @@
+import SVG from 'svg.js'
+
 const SIZE_UNIT = 8
 const mapData = [
   { type: 'stop', x: 100, y: 100 },
@@ -47,4 +49,4 @@ const buildMap = () => {
   map.polyline(linePoints).fill('none').stroke({ width: SIZE_UNIT })
 }
 
-window.buildMap = buildMap
+buildMap()
