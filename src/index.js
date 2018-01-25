@@ -38,15 +38,24 @@ const buildMap = () => {
 
   const linePoints = []
 
-  mapData.forEach(({ type, x, y, orientation }) => {
+  mapData.forEach(({ type, x, y, orientation }, index, arr) => {
+    const previous = arr[index - 1]
+    const next = arr[index + 1]
+
     if (type === 'stop') {
       buildStop(map, x, y, orientation)
     }
 
-    linePoints.push([x, y])
+    if (!previous) {
+      linePoints.push(`M${x} ${y}`)
+    } else if (type === 'corner' && next) {
+      linePoints.push(`Q${x} ${y} ${next.x} ${next.y}`)
+    } else {
+      linePoints.push(`L${x} ${y}`)
+    }
   })
 
-  map.polyline(linePoints).fill('none').stroke({ width: SIZE_UNIT })
+  map.path(linePoints.join(' ')).fill('none').stroke({ width: SIZE_UNIT })
 }
 
 buildMap()
