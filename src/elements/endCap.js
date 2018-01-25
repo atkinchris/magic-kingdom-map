@@ -5,7 +5,7 @@ const buildEndCap = (group, point, color) => {
   const endCap = group.rect(SIZE_UNIT * 3, SIZE_UNIT)
 
   endCap.fill(color)
-  endCap.move(x - (SIZE_UNIT * 1.5), y)
+  endCap.center(x, y)
 
   if (orientation === 'vertical') {
     endCap.rotate(90)
@@ -13,26 +13,32 @@ const buildEndCap = (group, point, color) => {
 
   if (label && label.text) {
     const { text, alignment } = label
-    const breaks = text.split('\n').length - 1
     const labelElement = group.text(text).move(x, y)
-    const length = Math.ceil(labelElement.length())
+    const leading = labelElement.leading().value
+    const lines = labelElement.lines().length()
+    const height = (leading * lines) + (leading / 2)
 
     switch (alignment) {
       case 'right':
-        labelElement.dmove(SIZE_UNIT * 2.5, -SIZE_UNIT * 1.6)
+        labelElement.font({ anchor: 'start' })
+        labelElement.dx(SIZE_UNIT * 1.5)
+        labelElement.dy(-SIZE_UNIT * height)
+        if (orientation === 'horizontal') labelElement.dx(SIZE_UNIT)
         break
       case 'left':
-        labelElement.dmove(-(SIZE_UNIT * 2.5) - length, -SIZE_UNIT * 1.6)
+        labelElement.font({ anchor: 'end' })
+        labelElement.dx(-SIZE_UNIT * 2.5)
+        labelElement.dy(-SIZE_UNIT * height)
+        if (orientation === 'horizontal') labelElement.dx(-SIZE_UNIT)
         break
       case 'below':
-        labelElement.dmove((-length - SIZE_UNIT) / 2, SIZE_UNIT)
-        labelElement.dx(breaks * SIZE_UNIT * 4)
-        labelElement.dy(SIZE_UNIT / 2)
+        labelElement.font({ anchor: 'middle' })
+        labelElement.dy(SIZE_UNIT * 2)
         break
       case 'above':
-        labelElement.dmove((-length - SIZE_UNIT) / 2, -SIZE_UNIT * 5)
-        labelElement.dy(breaks * -SIZE_UNIT * 4)
-        labelElement.dx(breaks * SIZE_UNIT * 4)
+        labelElement.font({ anchor: 'middle' })
+        labelElement.dy(-SIZE_UNIT * 5)
+        labelElement.dy(-height * SIZE_UNIT * 1.5)
         break
       default:
         break

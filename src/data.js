@@ -350,8 +350,8 @@ export default [{
     x: -5,
     y: 32,
     label: {
-      text: 'Swiss Family Treehouse',
-      alignment: 'left',
+      text: 'Swiss Family\nTreehouse',
+      alignment: 'right',
     },
   }],
 }, {
@@ -414,7 +414,7 @@ export default [{
     },
   }, {
     type: 'stop',
-    x: 60,
+    x: 65,
     y: -25,
     orientation: 'down',
     label: {
@@ -448,5 +448,32 @@ export default [{
       alignment: 'right',
     },
   }],
-  // "Seven Dwarfs Mine Train"
+}, {
+  color: '#ffd203',
+  points: [{
+    type: 'point',
+    x: 35,
+    y: -25,
+  }, {
+    type: 'corner',
+    x: 40,
+    y: -25,
+  }, {
+    type: 'point',
+    x: 40,
+    y: -20,
+  }, {
+    type: 'corner',
+    x: 40,
+    y: -15,
+  }, {
+    type: 'endcap',
+    orientation: 'vertical',
+    x: 45,
+    y: -15,
+    label: {
+      text: 'Seven Dwarfs\nMine Train',
+      alignment: 'right',
+    },
+  }],
 }]
