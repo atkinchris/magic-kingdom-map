@@ -2,15 +2,19 @@ import SVG from 'svg.js'
 
 const SIZE_UNIT = 8
 const mapData = [
-  { type: 'endcap', x: 100, y: 100 },
-  { type: 'stop', x: 100, y: 150, orientation: 'left' },
-  { type: 'stop', x: 100, y: 200 },
-  { type: 'point', x: 100, y: 250 },
-  { type: 'corner', x: 100, y: 300 },
-  { type: 'stop', x: 150, y: 300, orientation: 'up' },
-  { type: 'stop', x: 200, y: 300, orientation: 'down' },
-  { type: 'endcap', x: 250, y: 300, orientation: 'vertical' },
-]
+  { type: 'endcap', x: 10, y: 10 },
+  { type: 'stop', x: 10, y: 15, orientation: 'left' },
+  { type: 'stop', x: 10, y: 20 },
+  { type: 'point', x: 10, y: 25 },
+  { type: 'corner', x: 10, y: 30 },
+  { type: 'stop', x: 15, y: 30, orientation: 'up' },
+  { type: 'stop', x: 20, y: 30, orientation: 'down' },
+  { type: 'endcap', x: 25, y: 30, orientation: 'vertical' },
+].map(p => ({
+  ...p,
+  x: p.x * SIZE_UNIT,
+  y: p.y * SIZE_UNIT,
+}))
 
 const buildEndCap = (group, x, y, orientation = 'horizontal') => {
   const endCap = group.rect(SIZE_UNIT * 2, SIZE_UNIT).move(x - SIZE_UNIT, y - (SIZE_UNIT / 2))
