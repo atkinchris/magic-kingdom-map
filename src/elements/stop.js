@@ -48,7 +48,7 @@ const buildStop = (group, point, color) => {
       case 'above':
         labelElement.font({ anchor: 'middle' })
         labelElement.dy(-SIZE_UNIT * 5)
-        labelElement.dy(-height * SIZE_UNIT * 1.5)
+        labelElement.dy(-height * SIZE_UNIT * 1.25)
         break
       default:
         break

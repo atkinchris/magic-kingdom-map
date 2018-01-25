@@ -27,7 +27,7 @@ const buildEndCap = (group, point, color) => {
         break
       case 'left':
         labelElement.font({ anchor: 'end' })
-        labelElement.dx(-SIZE_UNIT * 2.5)
+        labelElement.dx(-SIZE_UNIT * 1.5)
         labelElement.dy(-SIZE_UNIT * height)
         if (orientation === 'horizontal') labelElement.dx(-SIZE_UNIT)
         break
