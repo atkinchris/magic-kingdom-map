@@ -1,4 +1,12 @@
 const SIZE_UNIT = 8
+const mapData = [
+  { type: 'station', x: 100, y: 100 },
+  { type: 'station', x: 100, y: 150, orientation: 'left' },
+  { type: 'station', x: 100, y: 200 },
+  { x: 100, y: 250 },
+  { type: 'station', x: 150, y: 250, orientation: 'up' },
+  { type: 'station', x: 200, y: 250, orientation: 'down' },
+]
 
 const buildStation = (map, x, y, orientation = 'right') => {
   const station = map.rect(SIZE_UNIT * 2, SIZE_UNIT).move(x, y)
@@ -26,13 +34,17 @@ const buildStation = (map, x, y, orientation = 'right') => {
 const buildMap = () => {
   const map = SVG('map')
 
-  map.polyline([[100, 100], [100, 150], [100, 200], [100, 250], [150, 250], [200, 250]]).fill('none').stroke({ width: SIZE_UNIT }).opacity(0.5)
+  const linePoints = []
 
-  buildStation(map, 100, 100)
-  buildStation(map, 100, 150, 'left')
-  buildStation(map, 100, 200)
-  buildStation(map, 150, 250, 'up')
-  buildStation(map, 200, 250, 'down')
+  mapData.forEach(({ type, x, y, orientation }) => {
+    if (type === 'station') {
+      buildStation(map, x, y, orientation)
+    }
+
+    linePoints.push([x, y])
+  })
+
+  map.polyline(linePoints).fill('none').stroke({ width: SIZE_UNIT })
 }
 
 window.buildMap = buildMap
