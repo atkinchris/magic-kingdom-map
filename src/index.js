@@ -2,13 +2,25 @@ import SVG from 'svg.js'
 
 const SIZE_UNIT = 8
 const mapData = [
-  { type: 'stop', x: 100, y: 100 },
+  { type: 'endcap', x: 100, y: 100 },
   { type: 'stop', x: 100, y: 150, orientation: 'left' },
   { type: 'stop', x: 100, y: 200 },
-  { type: 'corner', x: 100, y: 250 },
-  { type: 'stop', x: 150, y: 250, orientation: 'up' },
-  { type: 'stop', x: 200, y: 250, orientation: 'down' },
+  { type: 'point', x: 100, y: 250 },
+  { type: 'corner', x: 100, y: 300 },
+  { type: 'stop', x: 150, y: 300, orientation: 'up' },
+  { type: 'stop', x: 200, y: 300, orientation: 'down' },
+  { type: 'endcap', x: 250, y: 300, orientation: 'vertical' },
 ]
+
+const buildEndCap = (map, x, y, orientation = 'horizontal') => {
+  const endCap = map.rect(SIZE_UNIT * 2, SIZE_UNIT).move(x - SIZE_UNIT, y - (SIZE_UNIT / 2))
+
+  if (orientation === 'vertical') {
+    endCap.rotate(90)
+  }
+
+  return endCap
+}
 
 const buildStop = (map, x, y, orientation = 'right') => {
   const stop = map.rect(SIZE_UNIT * 2, SIZE_UNIT).move(x, y)
@@ -44,6 +56,10 @@ const buildMap = () => {
 
     if (type === 'stop') {
       buildStop(map, x, y, orientation)
+    }
+
+    if (type === 'endcap') {
+      buildEndCap(map, x, y, orientation)
     }
 
     if (!previous) {
