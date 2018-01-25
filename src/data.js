@@ -156,24 +156,15 @@ export default [{
     type: 'stop',
     x: 85,
     y: 0,
-    orientation: 'left',
+    orientation: 'right',
     label: {
-      text: 'Space Mountain',
-      alignment: 'left',
-    },
-  }, {
-    type: 'stop',
-    x: 85,
-    y: -5,
-    orientation: 'left',
-    label: {
-      text: 'Tomorrowland Speedway',
-      alignment: 'left',
+      text: 'Tomorrowland\nSpeedway',
+      alignment: 'right',
     },
   }, {
     type: 'endcap',
     x: 85,
-    y: -10,
+    y: -5,
     orientation: 'horizontal',
     label: {
       text: 'Cosmic Starlight Cafe',
