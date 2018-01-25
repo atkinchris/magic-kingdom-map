@@ -27,10 +27,10 @@ const buildStation = (group, { x, y, orientation = 'vertical', label }) => {
         labelElement.dmove(-(SIZE_UNIT * 2.5) - length, -SIZE_UNIT * 2)
         break
       case 'below':
-        labelElement.dmove(-DIAMETER, DIAMETER / 2)
+        labelElement.dmove(-length / 2, DIAMETER / 1.5)
         break
       case 'above':
-        labelElement.dmove(-DIAMETER, -DIAMETER - (2 * SIZE_UNIT))
+        labelElement.dmove(-length / 2, -DIAMETER * 2)
         break
       default:
         break
