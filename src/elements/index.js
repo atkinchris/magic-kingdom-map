@@ -1,12 +1,17 @@
 import buildStop from './stop'
 import buildEndCap from './endCap'
+import buildStation from './station'
 
-const buildElement = (group, { type, x, y, orientation }) => {
+const buildElement = (group, element) => {
+  const { type } = element
+
   switch (type) {
     case 'stop':
-      return buildStop(group, x, y, orientation)
+      return buildStop(group, element)
     case 'endcap':
-      return buildEndCap(group, x, y, orientation)
+      return buildEndCap(group, element)
+    case 'station':
+      return buildStation(group, element)
     default:
       return null
   }

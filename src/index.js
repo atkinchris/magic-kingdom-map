@@ -31,7 +31,11 @@ const buildMap = () => {
     }
   })
 
-  group.path(linePoints.join(' ')).fill('none').stroke({ width: SIZE_UNIT })
+  group
+    .path(linePoints.join(' '))
+    .fill('none')
+    .stroke({ width: SIZE_UNIT })
+    .back()
 }
 
 buildMap()

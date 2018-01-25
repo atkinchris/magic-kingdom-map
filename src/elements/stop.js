@@ -1,6 +1,6 @@
 import { SIZE_UNIT } from '../constants'
 
-const buildStop = (group, x, y, orientation = 'right') => {
+const buildStop = (group, { x, y, orientation = 'right' }) => {
   const stop = group.rect(SIZE_UNIT * 2, SIZE_UNIT).move(x, y)
 
   switch (orientation) {
