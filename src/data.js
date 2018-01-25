@@ -6,7 +6,7 @@ export default [{
     x: 30,
     y: 10,
     label: {
-      text: 'Cinderella Castle',
+      text: 'Cinderella\nCastle',
       alignment: 'above',
     },
   }, {
@@ -77,13 +77,9 @@ export default [{
   name: 'Tomorrowland',
   color: 'blue',
   points: [{
-    type: 'station',
+    type: 'point',
     x: 30,
     y: 10,
-    label: {
-      text: 'Cinderella Castle',
-      alignment: 'above',
-    },
   }, {
     type: 'point',
     x: 40,
@@ -111,7 +107,7 @@ export default [{
     },
   }, {
     type: 'stop',
-    x: 64,
+    x: 63,
     y: 20,
     orientation: 'up',
     label: {
@@ -120,16 +116,16 @@ export default [{
     },
   }, {
     type: 'stop',
-    x: 71,
+    x: 70,
     y: 20,
     orientation: 'down',
     label: {
-      text: 'Buzz Lightyear\nSpace Ranger\nSpin',
+      text: 'Buzz Lightyear\nSpace Ranger Spin',
       alignment: 'below',
     },
   }, {
     type: 'stop',
-    x: 78,
+    x: 77,
     y: 20,
     orientation: 'up',
     label: {

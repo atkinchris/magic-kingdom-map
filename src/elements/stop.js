@@ -37,14 +37,13 @@ const buildStop = (group, point, color) => {
         labelElement.dmove(-(SIZE_UNIT * 2.5) - length, -SIZE_UNIT * 1.6)
         break
       case 'below':
-        labelElement.dmove((-length - SIZE_UNIT) / 2, SIZE_UNIT)
-        labelElement.dx(breaks * SIZE_UNIT * 4)
-        labelElement.dy(SIZE_UNIT / 2)
+        labelElement.font({ anchor: 'middle' })
+        labelElement.dy(SIZE_UNIT * 2)
         break
       case 'above':
-        labelElement.dmove((-length - SIZE_UNIT) / 2, -SIZE_UNIT * 5)
+        labelElement.font({ anchor: 'middle' })
+        labelElement.dy(-SIZE_UNIT * 5)
         labelElement.dy(breaks * -SIZE_UNIT * 4)
-        labelElement.dx(breaks * SIZE_UNIT * 4)
         break
       default:
         break

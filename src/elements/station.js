@@ -17,6 +17,7 @@ const buildStation = (group, point, color) => {
 
   if (label && label.text) {
     const { text, alignment = 'above' } = label
+    const breaks = text.split('\n').length - 1
     const labelElement = group.text(text).move(x, y)
     const length = Math.ceil(labelElement.length())
 
@@ -29,9 +30,12 @@ const buildStation = (group, point, color) => {
         break
       case 'below':
         labelElement.dmove(-length / 2, DIAMETER / 1.5)
+        labelElement.font({ anchor: 'middle' })
         break
       case 'above':
-        labelElement.dmove(-length / 2, -DIAMETER * 2)
+        labelElement.font({ anchor: 'middle' })
+        labelElement.dy(-DIAMETER * 2)
+        labelElement.dy(breaks * -SIZE_UNIT * 3)
         break
       default:
         break
