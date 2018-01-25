@@ -246,6 +246,52 @@ export default [{
     },
   }],
 }, {
+  name: 'Frontierland',
+  color: '#af6110',
+  points: [{
+    type: 'stop',
+    x: -20,
+    y: 20,
+    orientation: 'down',
+  }, {
+    type: 'stop',
+    x: -30,
+    y: 20,
+    orientation: 'down',
+  }, {
+    type: 'station',
+    x: -40,
+    y: 20,
+    label: {
+      text: 'WDW\nRailroad',
+      alignment: 'left',
+    },
+  }, {
+    type: 'stop',
+    x: -40,
+    y: 15,
+    label: {
+      text: 'Splash Mountain',
+      alignment: 'right',
+    },
+  }, {
+    type: 'stop',
+    x: -40,
+    y: 10,
+    label: {
+      text: 'Tom Sawyer\nRafts',
+      alignment: 'right',
+    },
+  }, {
+    type: 'endcap',
+    x: -40,
+    y: 0,
+    label: {
+      text: 'Big Thunder Mountain',
+      alignment: 'right',
+    },
+  }],
+}, {
   name: 'Adventureland',
   color: '#00853e',
   offset: {
@@ -296,13 +342,9 @@ export default [{
       alignment: 'below',
     },
   }, {
-    type: 'station',
+    type: 'point',
     x: -40,
     y: 20,
-    label: {
-      text: 'WDW\nRailroad',
-      alignment: 'left',
-    },
   }, {
     type: 'point',
     x: -40,
