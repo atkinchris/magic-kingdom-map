@@ -11,10 +11,18 @@ export default [{
   x: 10,
   y: 15,
   orientation: 'left',
+  label: {
+    text: 'Dog',
+    alignment: 'left',
+  },
 }, {
   type: 'stop',
   x: 10,
   y: 20,
+  label: {
+    text: 'Cat',
+    alignment: 'right',
+  },
 }, {
   type: 'point',
   x: 10,
@@ -28,6 +36,10 @@ export default [{
   x: 15,
   y: 30,
   orientation: 'up',
+  label: {
+    text: 'Owl',
+    alignment: 'above',
+  },
 }, {
   type: 'station',
   x: 20,
@@ -42,6 +54,10 @@ export default [{
   x: 25,
   y: 30,
   orientation: 'down',
+  label: {
+    text: 'Rabbit',
+    alignment: 'below',
+  },
 }, {
   type: 'endcap',
   x: 30,

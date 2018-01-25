@@ -1,6 +1,6 @@
 import { SIZE_UNIT } from '../constants'
 
-const buildStop = (group, { x, y, orientation = 'right' }) => {
+const buildStop = (group, { x, y, orientation = 'right', label }) => {
   const stop = group.rect(SIZE_UNIT * 2, SIZE_UNIT).move(x, y)
 
   switch (orientation) {
@@ -18,6 +18,29 @@ const buildStop = (group, { x, y, orientation = 'right' }) => {
       break
     default:
       break
+  }
+
+  if (label && label.text) {
+    const { text, alignment } = label
+    const labelElement = group.text(text).move(x, y)
+    const length = Math.ceil(labelElement.length())
+
+    switch (alignment) {
+      case 'right':
+        labelElement.dmove(SIZE_UNIT * 2.5, -SIZE_UNIT * 1.6)
+        break
+      case 'left':
+        labelElement.dmove(-(SIZE_UNIT * 2.5) - length, -SIZE_UNIT * 1.6)
+        break
+      case 'below':
+        labelElement.dmove((-length - SIZE_UNIT) / 2, SIZE_UNIT)
+        break
+      case 'above':
+        labelElement.dmove((-length - SIZE_UNIT) / 2, -SIZE_UNIT * 5)
+        break
+      default:
+        break
+    }
   }
 
   return stop
