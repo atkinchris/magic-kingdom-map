@@ -2,6 +2,7 @@ export default [{
   type: 'station',
   x: 10,
   y: 10,
+  label: 'Castle',
 }, {
   type: 'stop',
   x: 10,
@@ -29,6 +30,7 @@ export default [{
   x: 20,
   y: 30,
   orientation: 'horizontal',
+  label: 'Hotel',
 }, {
   type: 'stop',
   x: 25,
