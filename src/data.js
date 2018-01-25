@@ -1,8 +1,7 @@
 export default [{
-  type: 'endcap',
+  type: 'station',
   x: 10,
   y: 10,
-  label: 'Entrance',
 }, {
   type: 'stop',
   x: 10,
@@ -29,6 +28,7 @@ export default [{
   type: 'station',
   x: 20,
   y: 30,
+  orientation: 'horizontal',
 }, {
   type: 'stop',
   x: 25,
