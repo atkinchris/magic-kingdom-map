@@ -67,7 +67,6 @@ export default [{
     type: 'station',
     x: 30,
     y: 55,
-    orientation: 'vertical',
     label: {
       text: 'WDW Railroad',
       alignment: 'below',
@@ -231,5 +230,26 @@ export default [{
       text: 'Haunted Mansion',
       alignment: 'left',
     },
+  }],
+}, {
+  name: 'Adventureland',
+  color: '#00853e',
+  offset: {
+    y: 1,
+    x: 0,
+  },
+  points: [{
+    type: 'point',
+    x: 30,
+    y: 10,
+  }, {
+    type: 'stop',
+    x: 10,
+    y: 10,
+    orientation: 'down',
+  }, {
+    type: 'point',
+    x: -5,
+    y: 10,
   }],
 }]

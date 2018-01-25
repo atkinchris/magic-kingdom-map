@@ -3,17 +3,12 @@ import { SIZE_UNIT } from '../constants'
 const DIAMETER = SIZE_UNIT * 3
 
 const buildStation = (group, point) => {
-  const { x, y, orientation = 'vertical', label } = point
-  const station = group.circle(DIAMETER).move(x, y)
+  const { x, y, label } = point
+  const station = group.circle(DIAMETER).center(x, y)
 
   station.fill('white')
   station.stroke({ color: 'black', width: SIZE_UNIT * 0.8 })
-
-  if (orientation === 'horizontal') {
-    station.dmove(-SIZE_UNIT * 2, -SIZE_UNIT * 1.5)
-  } else {
-    station.dmove(-SIZE_UNIT * 1.5, -SIZE_UNIT * 1.5)
-  }
+  station.front()
 
   if (label && label.text) {
     const { text, alignment = 'above' } = label

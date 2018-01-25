@@ -1,7 +1,8 @@
 import { SIZE_UNIT } from '../constants'
 import buildElement from './'
 
-const buildLine = (group, { points: rawPoints, name, color }) => {
+const buildLine = (group, { points: rawPoints, offset = {}, color }) => {
+  const lineGroup = group.group()
   const points = rawPoints.map(p => ({
     ...p,
     x: p.x * SIZE_UNIT,
@@ -15,7 +16,7 @@ const buildLine = (group, { points: rawPoints, name, color }) => {
     const previous = arr[index - 1]
     const next = arr[index + 1]
 
-    buildElement(group, element, color)
+    buildElement(lineGroup, element, color)
 
     if (!previous) {
       linePoints.push(`M${x} ${y}`)
@@ -26,11 +27,14 @@ const buildLine = (group, { points: rawPoints, name, color }) => {
     }
   })
 
-  group
+  lineGroup
     .path(linePoints.join(' '))
     .fill('none')
     .stroke({ width: SIZE_UNIT, color })
     .back()
+
+  const { x = 0, y = 0 } = offset
+  lineGroup.dmove(x * SIZE_UNIT, y * SIZE_UNIT)
 }
 
 export default buildLine
