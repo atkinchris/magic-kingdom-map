@@ -7,4 +7,4 @@ const map = SVG('map').group()
 
 lines.forEach(line => buildLine(map, line))
 
-map.dmove(0, 400)
+map.dmove(600, 400)

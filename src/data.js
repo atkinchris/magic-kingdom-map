@@ -1,6 +1,6 @@
 export default [{
   name: 'Main Street, USA',
-  color: 'red',
+  color: '#ee2f25',
   points: [{
     type: 'station',
     x: 30,
@@ -75,7 +75,7 @@ export default [{
   }],
 }, {
   name: 'Tomorrowland',
-  color: 'blue',
+  color: '#1d3f95',
   points: [{
     type: 'point',
     x: 30,
@@ -178,6 +178,57 @@ export default [{
     orientation: 'horizontal',
     label: {
       text: 'Cosmic Starlight Cafe',
+      alignment: 'left',
+    },
+  }],
+}, {
+  name: 'Liberty Square',
+  color: '#029ddd',
+  points: [{
+    type: 'point',
+    x: 30,
+    y: 10,
+  }, {
+    type: 'stop',
+    x: 15,
+    y: 10,
+    orientation: 'up',
+    label: {
+      text: 'Hall of\nPresidents',
+      alignment: 'above',
+    },
+  }, {
+    type: 'stop',
+    x: 10,
+    y: 10,
+    orientation: 'down',
+    label: {
+      text: 'Christmas\nShoppe',
+      alignment: 'below',
+    },
+  }, {
+    type: 'stop',
+    x: 5,
+    y: 10,
+    orientation: 'up',
+    label: {
+      text: 'Liberty Tree\nTavern',
+      alignment: 'above',
+    },
+  }, {
+    type: 'station',
+    x: -5,
+    y: 10,
+    label: {
+      text: 'Liberty Square\nRiverboat',
+      alignment: 'left',
+    },
+  }, {
+    type: 'endcap',
+    x: -5,
+    y: -10,
+    label: {
+      text: 'Haunted Mansion',
       alignment: 'left',
     },
   }],

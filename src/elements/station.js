@@ -2,12 +2,12 @@ import { SIZE_UNIT } from '../constants'
 
 const DIAMETER = SIZE_UNIT * 3
 
-const buildStation = (group, point, color) => {
+const buildStation = (group, point) => {
   const { x, y, orientation = 'vertical', label } = point
   const station = group.circle(DIAMETER).move(x, y)
 
   station.fill('white')
-  station.stroke({ color, width: SIZE_UNIT * 0.8 })
+  station.stroke({ color: 'black', width: SIZE_UNIT * 0.8 })
 
   if (orientation === 'horizontal') {
     station.dmove(-SIZE_UNIT * 2, -SIZE_UNIT * 1.5)
@@ -17,25 +17,28 @@ const buildStation = (group, point, color) => {
 
   if (label && label.text) {
     const { text, alignment = 'above' } = label
-    const breaks = text.split('\n').length - 1
     const labelElement = group.text(text).move(x, y)
-    const length = Math.ceil(labelElement.length())
+    const leading = labelElement.leading().value
+    const lines = labelElement.lines().length()
+    const height = (leading * lines) + (leading / 2)
 
     switch (alignment) {
       case 'right':
+        labelElement.font({ anchor: 'start' })
         labelElement.dmove(SIZE_UNIT * 2.5, -SIZE_UNIT * 2)
         break
       case 'left':
-        labelElement.dmove(-(SIZE_UNIT * 2.5) - length, -SIZE_UNIT * 2)
+        labelElement.font({ anchor: 'end' })
+        labelElement.dy(-SIZE_UNIT * height)
+        labelElement.dx(-DIAMETER)
         break
       case 'below':
-        labelElement.dmove(-length / 2, DIAMETER / 1.5)
         labelElement.font({ anchor: 'middle' })
+        labelElement.dy(height + (SIZE_UNIT * 2))
         break
       case 'above':
         labelElement.font({ anchor: 'middle' })
-        labelElement.dy(-DIAMETER * 2)
-        labelElement.dy(breaks * -SIZE_UNIT * 3)
+        labelElement.dy(-(height + ((DIAMETER + SIZE_UNIT) * 2)))
         break
       default:
         break

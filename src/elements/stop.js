@@ -25,16 +25,19 @@ const buildStop = (group, point, color) => {
 
   if (label && label.text) {
     const { text, alignment } = label
-    const breaks = text.split('\n').length - 1
     const labelElement = group.text(text).move(x, y)
-    const length = Math.ceil(labelElement.length())
+    const leading = labelElement.leading().value
+    const lines = labelElement.lines().length()
+    const height = leading * lines
 
     switch (alignment) {
       case 'right':
+        labelElement.font({ anchor: 'start' })
         labelElement.dmove(SIZE_UNIT * 2.5, -SIZE_UNIT * 1.6)
         break
       case 'left':
-        labelElement.dmove(-(SIZE_UNIT * 2.5) - length, -SIZE_UNIT * 1.6)
+        labelElement.font({ anchor: 'end' })
+        labelElement.dmove(-SIZE_UNIT * 2.5, -SIZE_UNIT * 1.6)
         break
       case 'below':
         labelElement.font({ anchor: 'middle' })
@@ -43,7 +46,8 @@ const buildStop = (group, point, color) => {
       case 'above':
         labelElement.font({ anchor: 'middle' })
         labelElement.dy(-SIZE_UNIT * 5)
-        labelElement.dy(breaks * -SIZE_UNIT * 4)
+        labelElement.dy(-height * SIZE_UNIT * 1.5)
+        console.log(height)
         break
       default:
         break
