@@ -1,6 +1,7 @@
 import buildStop from './stop'
 import buildEndCap from './endCap'
 import buildStation from './station'
+import buildLine from './line'
 
 const buildElement = (group, element) => {
   const { type } = element
@@ -18,3 +19,9 @@ const buildElement = (group, element) => {
 }
 
 export default buildElement
+export {
+  buildStop,
+  buildEndCap,
+  buildStation,
+  buildLine,
+}
