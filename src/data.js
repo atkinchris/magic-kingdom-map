@@ -1,67 +1,72 @@
 export default [{
   type: 'station',
-  x: 10,
+  x: 30,
   y: 10,
   label: {
-    text: 'Castle',
-    alignment: 'left',
+    text: 'Cinderella Castle',
+    alignment: 'above',
   },
 }, {
   type: 'stop',
-  x: 10,
-  y: 15,
+  x: 30,
+  y: 30,
   orientation: 'left',
   label: {
-    text: 'Dog',
+    text: 'Crystal Palace',
     alignment: 'left',
   },
 }, {
   type: 'stop',
-  x: 10,
-  y: 20,
+  x: 30,
+  y: 40,
+  orientation: 'left',
   label: {
-    text: 'Cat',
+    text: 'Casey\'s Corner',
+    alignment: 'left',
+  },
+}, {
+  type: 'stop',
+  x: 30,
+  y: 45,
+  orientation: 'right',
+  label: {
+    text: 'Main Street Bakery',
     alignment: 'right',
   },
 }, {
-  type: 'point',
-  x: 10,
-  y: 25,
-}, {
-  type: 'corner',
-  x: 10,
-  y: 30,
+  type: 'stop',
+  x: 30,
+  y: 47,
+  orientation: 'left',
+  label: {
+    text: 'Emporium',
+    alignment: 'left',
+  },
 }, {
   type: 'stop',
-  x: 15,
-  y: 30,
-  orientation: 'up',
+  x: 30,
+  y: 49,
+  orientation: 'right',
   label: {
-    text: 'Owl',
-    alignment: 'above',
+    text: 'Town Square Theatre',
+    alignment: 'right',
+  },
+}, {
+  type: 'stop',
+  x: 30,
+  y: 51,
+  orientation: 'left',
+  label: {
+    text: 'City Hall',
+    alignment: 'left',
   },
 }, {
   type: 'station',
-  x: 20,
-  y: 30,
-  orientation: 'horizontal',
+  x: 30,
+  y: 55,
+  orientation: 'vertical',
   label: {
-    text: 'Hotel',
-    alignment: 'above',
-  },
-}, {
-  type: 'stop',
-  x: 25,
-  y: 30,
-  orientation: 'down',
-  label: {
-    text: 'Rabbit',
+    text: 'WDW Railroad',
     alignment: 'below',
   },
-}, {
-  type: 'endcap',
-  x: 30,
-  y: 30,
-  orientation: 'vertical',
-  label: 'Output',
 }]
