@@ -156,10 +156,10 @@ export default [{
     type: 'stop',
     x: 85,
     y: 0,
-    orientation: 'right',
+    orientation: 'left',
     label: {
-      text: 'Tomorrowland\nSpeedway',
-      alignment: 'right',
+      text: 'Tomorrowland Speedway',
+      alignment: 'left',
     },
   }, {
     type: 'endcap',
@@ -182,12 +182,16 @@ export default [{
     x: 85,
     y: 20,
   }, {
-    type: 'endcap',
+    type: 'point',
     x: 85,
     y: 25,
+  }, {
+    type: 'endcap',
+    x: 85,
+    y: 32,
     label: {
-      text: 'Space\nMountain',
-      alignment: 'right',
+      text: 'Space Mountain',
+      alignment: 'left',
     },
   }],
 }, {
@@ -238,7 +242,7 @@ export default [{
     y: -10,
     label: {
       text: 'Haunted Mansion',
-      alignment: 'left',
+      alignment: 'right',
     },
   }],
 }, {
@@ -426,10 +430,10 @@ export default [{
     type: 'stop',
     x: 65,
     y: -25,
-    orientation: 'down',
+    orientation: 'up',
     label: {
       text: 'Under\nthe Sea',
-      alignment: 'below',
+      alignment: 'above',
     },
   }, {
     type: 'stop',
@@ -442,7 +446,7 @@ export default [{
     },
   }, {
     type: 'stop',
-    x: 80,
+    x: 77,
     y: -25,
     orientation: 'down',
     label: {
@@ -450,8 +454,26 @@ export default [{
       alignment: 'below',
     },
   }, {
+    type: 'stop',
+    x: 85,
+    y: -25,
+    orientation: 'up',
+    label: {
+      text: 'Pete\'s Silly\nSideshow',
+      alignment: 'above',
+    },
+  }, {
+    type: 'stop',
+    x: 87,
+    y: -25,
+    orientation: 'down',
+    label: {
+      text: 'Barnstormer',
+      alignment: 'below',
+    },
+  }, {
     type: 'station',
-    x: 90,
+    x: 95,
     y: -25,
     label: {
       text: 'WDW\nRailroad',
@@ -477,13 +499,78 @@ export default [{
     x: 40,
     y: -15,
   }, {
-    type: 'endcap',
-    orientation: 'vertical',
+    type: 'point',
     x: 45,
+    y: -15,
+  }, {
+    type: 'stop',
+    orientation: 'up',
+    x: 50,
     y: -15,
     label: {
       text: 'Seven Dwarfs\nMine Train',
-      alignment: 'right',
+      alignment: 'above',
+    },
+  }, {
+    type: 'point',
+    x: 55,
+    y: -15,
+  }, {
+    type: 'corner',
+    x: 55,
+    y: -15,
+  }, {
+    type: 'point',
+    x: 55,
+    y: -15,
+  }, {
+    type: 'corner',
+    x: 60,
+    y: -15,
+  }, {
+    type: 'point',
+    x: 60,
+    y: -20,
+  }, {
+    type: 'corner',
+    x: 60,
+    y: -25,
+  }, {
+    type: 'point',
+    x: 65,
+    y: -25,
+  }],
+}, {
+  color: '#ffd203',
+  points: [{
+    type: 'point',
+    x: 30,
+    y: -20,
+  }, {
+    type: 'corner',
+    x: 30,
+    y: -25,
+  }, {
+    type: 'point',
+    x: 25,
+    y: -25,
+  }, {
+    type: 'stop',
+    x: 20,
+    y: -25,
+    orientation: 'up',
+    label: {
+      text: 'Peter Pan\'s\nFlight',
+      alignment: 'above',
+    },
+  }, {
+    type: 'endcap',
+    x: 15,
+    y: -25,
+    orientation: 'vertical',
+    label: {
+      text: 'it\'s a small world',
+      alignment: 'left',
     },
   }],
 }]
