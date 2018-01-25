@@ -20,7 +20,8 @@ const buildStation = (group, point) => {
     switch (alignment) {
       case 'right':
         labelElement.font({ anchor: 'start' })
-        labelElement.dmove(SIZE_UNIT * 2.5, -SIZE_UNIT * 2)
+        labelElement.dy(-SIZE_UNIT * height)
+        labelElement.dx(DIAMETER)
         break
       case 'left':
         labelElement.font({ anchor: 'end' })
