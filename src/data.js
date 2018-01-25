@@ -106,44 +106,52 @@ export default [{
     y: 20,
     orientation: 'down',
     label: {
-      text: 'Tomorrowland Terrace',
+      text: 'Tomorrowland\nTerrace',
       alignment: 'below',
     },
   }, {
     type: 'stop',
-    x: 60,
+    x: 64,
     y: 20,
     orientation: 'up',
     label: {
-      text: 'Monster\'s Inc Laugh Floor',
+      text: 'Monster\'s Inc\nLaugh Floor',
       alignment: 'above',
     },
   }, {
     type: 'stop',
-    x: 65,
+    x: 71,
     y: 20,
     orientation: 'down',
     label: {
-      text: 'Buzz Lightyear Space Ranger Spin',
+      text: 'Buzz Lightyear\nSpace Ranger\nSpin',
       alignment: 'below',
     },
   }, {
     type: 'stop',
-    x: 70,
+    x: 78,
     y: 20,
     orientation: 'up',
     label: {
-      text: 'Astro Orbit People Mover',
+      text: 'Astro Orbit\nPeople Mover',
       alignment: 'above',
     },
   }, {
-    type: 'corner',
+    type: 'point',
     x: 80,
     y: 20,
   }, {
+    type: 'corner',
+    x: 85,
+    y: 20,
+  }, {
+    type: 'point',
+    x: 85,
+    y: 15,
+  }, {
     type: 'stop',
-    x: 80,
-    y: 10,
+    x: 85,
+    y: 5,
     orientation: 'left',
     label: {
       text: 'Carousel of Progress',
@@ -151,8 +159,8 @@ export default [{
     },
   }, {
     type: 'stop',
-    x: 80,
-    y: 5,
+    x: 85,
+    y: 0,
     orientation: 'left',
     label: {
       text: 'Space Mountain',
@@ -160,23 +168,21 @@ export default [{
     },
   }, {
     type: 'stop',
-    x: 80,
-    y: 0,
+    x: 85,
+    y: -5,
     orientation: 'left',
     label: {
       text: 'Tomorrowland Speedway',
       alignment: 'left',
     },
   }, {
-    type: 'stop',
-    x: 80,
-    y: -5,
-    orientation: 'left',
+    type: 'endcap',
+    x: 85,
+    y: -10,
+    orientation: 'horizontal',
     label: {
       text: 'Cosmic Starlight Cafe',
       alignment: 'left',
     },
-  }, {
-    // WDW Railroad
   }],
 }]
