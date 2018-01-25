@@ -189,7 +189,7 @@ export default [{
     y: 10,
   }, {
     type: 'stop',
-    x: 15,
+    x: 17,
     y: 10,
     orientation: 'up',
     label: {
@@ -198,7 +198,7 @@ export default [{
     },
   }, {
     type: 'stop',
-    x: 10,
+    x: 11,
     y: 10,
     orientation: 'down',
     label: {
@@ -244,7 +244,7 @@ export default [{
     y: 10,
   }, {
     type: 'stop',
-    x: 10,
+    x: 11,
     y: 10,
     orientation: 'down',
   }, {
@@ -354,4 +354,99 @@ export default [{
       alignment: 'left',
     },
   }],
+}, {
+  name: 'Fantasyland',
+  color: '#ffd203',
+  points: [{
+    type: 'point',
+    x: 30,
+    y: 10,
+  }, {
+    type: 'stop',
+    x: 30,
+    y: -5,
+    label: {
+      text: 'Cinderella\'s\nRoyal Table',
+      alignment: 'right',
+    },
+  }, {
+    type: 'stop',
+    x: 30,
+    y: -10,
+    label: {
+      text: 'Prince Charming Carousel',
+      alignment: 'right',
+    },
+  }, {
+    type: 'point',
+    x: 30,
+    y: -20,
+  }, {
+    type: 'corner',
+    x: 30,
+    y: -25,
+  }, {
+    type: 'stop',
+    x: 35,
+    y: -25,
+    orientation: 'up',
+    label: {
+      text: 'Enchanted\nTales',
+      alignment: 'above',
+    },
+  }, {
+    type: 'stop',
+    x: 45,
+    y: -25,
+    orientation: 'up',
+    label: {
+      text: 'Be Our\nGuest',
+      alignment: 'above',
+    },
+  }, {
+    type: 'stop',
+    x: 55,
+    y: -25,
+    orientation: 'up',
+    label: {
+      text: 'Gaston\'s\nTavern',
+      alignment: 'above',
+    },
+  }, {
+    type: 'stop',
+    x: 60,
+    y: -25,
+    orientation: 'down',
+    label: {
+      text: 'Under\nthe Sea',
+      alignment: 'below',
+    },
+  }, {
+    type: 'stop',
+    x: 75,
+    y: -25,
+    orientation: 'up',
+    label: {
+      text: 'Big Top\nSouveniers',
+      alignment: 'above',
+    },
+  }, {
+    type: 'stop',
+    x: 80,
+    y: -25,
+    orientation: 'down',
+    label: {
+      text: 'Dumbo',
+      alignment: 'below',
+    },
+  }, {
+    type: 'station',
+    x: 90,
+    y: -25,
+    label: {
+      text: 'WDW\nRailroad',
+      alignment: 'right',
+    },
+  }],
+  // "Seven Dwarfs Mine Train"
 }]
