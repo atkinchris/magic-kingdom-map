@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -84,62 +84,80 @@ var SIZE_UNIT = exports.SIZE_UNIT = 8;
 "use strict";
 
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.buildLine = exports.buildStation = exports.buildEndCap = exports.buildStop = undefined;
 
-var _svg = __webpack_require__(2);
+var _stop = __webpack_require__(5);
 
-var _svg2 = _interopRequireDefault(_svg);
+var _stop2 = _interopRequireDefault(_stop);
 
-var _constants = __webpack_require__(0);
+var _endCap = __webpack_require__(6);
 
-var _data = __webpack_require__(3);
+var _endCap2 = _interopRequireDefault(_endCap);
 
-var _data2 = _interopRequireDefault(_data);
+var _station = __webpack_require__(7);
 
-var _elements = __webpack_require__(4);
+var _station2 = _interopRequireDefault(_station);
 
-var _elements2 = _interopRequireDefault(_elements);
+var _line = __webpack_require__(8);
+
+var _line2 = _interopRequireDefault(_line);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var mapData = _data2.default.map(function (p) {
-  return _extends({}, p, {
-    x: p.x * _constants.SIZE_UNIT,
-    y: p.y * _constants.SIZE_UNIT
-  });
-});
+var buildElement = function buildElement(group, element, color) {
+  var type = element.type;
 
-var buildMap = function buildMap() {
-  var group = (0, _svg2.default)('map').group();
 
-  var linePoints = [];
-
-  mapData.forEach(function (element, index, arr) {
-    var type = element.type,
-        x = element.x,
-        y = element.y;
-
-    var previous = arr[index - 1];
-    var next = arr[index + 1];
-
-    (0, _elements2.default)(group, element);
-
-    if (!previous) {
-      linePoints.push('M' + x + ' ' + y);
-    } else if (type === 'corner' && next) {
-      linePoints.push('Q' + x + ' ' + y + ' ' + next.x + ' ' + next.y);
-    } else {
-      linePoints.push('L' + x + ' ' + y);
-    }
-  });
-
-  group.path(linePoints.join(' ')).fill('none').stroke({ width: _constants.SIZE_UNIT }).back();
+  switch (type) {
+    case 'stop':
+      return (0, _stop2.default)(group, element, color);
+    case 'endcap':
+      return (0, _endCap2.default)(group, element, color);
+    case 'station':
+      return (0, _station2.default)(group, element, color);
+    default:
+      return null;
+  }
 };
 
-buildMap();
+exports.default = buildElement;
+exports.buildStop = _stop2.default;
+exports.buildEndCap = _endCap2.default;
+exports.buildStation = _station2.default;
+exports.buildLine = _line2.default;
 
 /***/ }),
 /* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _svg = __webpack_require__(3);
+
+var _svg2 = _interopRequireDefault(_svg);
+
+var _data = __webpack_require__(4);
+
+var _data2 = _interopRequireDefault(_data);
+
+var _elements = __webpack_require__(1);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var map = (0, _svg2.default)('map').group();
+
+_data2.default.reverse().forEach(function (line) {
+  return (0, _elements.buildLine)(map, line);
+});
+
+map.dmove(600, 400);
+
+/***/ }),
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -5697,84 +5715,6 @@ return SVG
 }));
 
 /***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = [{
-  type: 'station',
-  x: 10,
-  y: 10,
-  label: {
-    text: 'Castle',
-    alignment: 'left'
-  }
-}, {
-  type: 'stop',
-  x: 10,
-  y: 15,
-  orientation: 'left',
-  label: {
-    text: 'Dog',
-    alignment: 'left'
-  }
-}, {
-  type: 'stop',
-  x: 10,
-  y: 20,
-  label: {
-    text: 'Cat',
-    alignment: 'right'
-  }
-}, {
-  type: 'point',
-  x: 10,
-  y: 25
-}, {
-  type: 'corner',
-  x: 10,
-  y: 30
-}, {
-  type: 'stop',
-  x: 15,
-  y: 30,
-  orientation: 'up',
-  label: {
-    text: 'Owl',
-    alignment: 'above'
-  }
-}, {
-  type: 'station',
-  x: 20,
-  y: 30,
-  orientation: 'horizontal',
-  label: {
-    text: 'Hotel',
-    alignment: 'above'
-  }
-}, {
-  type: 'stop',
-  x: 25,
-  y: 30,
-  orientation: 'down',
-  label: {
-    text: 'Rabbit',
-    alignment: 'below'
-  }
-}, {
-  type: 'endcap',
-  x: 30,
-  y: 30,
-  orientation: 'vertical',
-  label: 'Output'
-}];
-
-/***/ }),
 /* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5784,38 +5724,624 @@ exports.default = [{
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-
-var _stop = __webpack_require__(5);
-
-var _stop2 = _interopRequireDefault(_stop);
-
-var _endCap = __webpack_require__(6);
-
-var _endCap2 = _interopRequireDefault(_endCap);
-
-var _station = __webpack_require__(7);
-
-var _station2 = _interopRequireDefault(_station);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var buildElement = function buildElement(group, element) {
-  var type = element.type;
-
-
-  switch (type) {
-    case 'stop':
-      return (0, _stop2.default)(group, element);
-    case 'endcap':
-      return (0, _endCap2.default)(group, element);
-    case 'station':
-      return (0, _station2.default)(group, element);
-    default:
-      return null;
-  }
-};
-
-exports.default = buildElement;
+exports.default = [{
+  name: 'Main Street, USA',
+  color: '#ee2f25',
+  points: [{
+    type: 'station',
+    x: 30,
+    y: 10,
+    label: {
+      text: 'Cinderella\nCastle',
+      alignment: 'above-right'
+    }
+  }, {
+    type: 'stop',
+    x: 30,
+    y: 30,
+    orientation: 'left',
+    label: {
+      text: 'Crystal Palace',
+      alignment: 'left'
+    }
+  }, {
+    type: 'stop',
+    x: 30,
+    y: 40,
+    orientation: 'left',
+    label: {
+      text: 'Casey\'s Corner',
+      alignment: 'left'
+    }
+  }, {
+    type: 'stop',
+    x: 30,
+    y: 45,
+    orientation: 'right',
+    label: {
+      text: 'Main Street Bakery',
+      alignment: 'right'
+    }
+  }, {
+    type: 'stop',
+    x: 30,
+    y: 47,
+    orientation: 'left',
+    label: {
+      text: 'Emporium',
+      alignment: 'left'
+    }
+  }, {
+    type: 'stop',
+    x: 30,
+    y: 49,
+    orientation: 'right',
+    label: {
+      text: 'Town Square Theatre',
+      alignment: 'right'
+    }
+  }, {
+    type: 'stop',
+    x: 30,
+    y: 51,
+    orientation: 'left',
+    label: {
+      text: 'City Hall',
+      alignment: 'left'
+    }
+  }, {
+    type: 'station',
+    x: 30,
+    y: 55,
+    label: {
+      text: 'WDW\nRailroad',
+      alignment: 'below'
+    }
+  }]
+}, {
+  name: 'Tomorrowland',
+  color: '#1d3f95',
+  points: [{
+    type: 'point',
+    x: 30,
+    y: 10
+  }, {
+    type: 'point',
+    x: 40,
+    y: 10
+  }, {
+    type: 'corner',
+    x: 45,
+    y: 10
+  }, {
+    type: 'point',
+    x: 45,
+    y: 15
+  }, {
+    type: 'corner',
+    x: 45,
+    y: 20
+  }, {
+    type: 'stop',
+    x: 50,
+    y: 20,
+    orientation: 'down',
+    label: {
+      text: 'Tomorrowland\nTerrace',
+      alignment: 'below'
+    }
+  }, {
+    type: 'stop',
+    x: 63,
+    y: 20,
+    orientation: 'up',
+    label: {
+      text: 'Monster\'s Inc\nLaugh Floor',
+      alignment: 'above'
+    }
+  }, {
+    type: 'stop',
+    x: 70,
+    y: 20,
+    orientation: 'down',
+    label: {
+      text: 'Buzz Lightyear\nSpace Ranger Spin',
+      alignment: 'below'
+    }
+  }, {
+    type: 'stop',
+    x: 77,
+    y: 20,
+    orientation: 'up',
+    label: {
+      text: 'Astro Orbit\nPeople Mover',
+      alignment: 'above'
+    }
+  }, {
+    type: 'point',
+    x: 80,
+    y: 20
+  }, {
+    type: 'corner',
+    x: 85,
+    y: 20
+  }, {
+    type: 'point',
+    x: 85,
+    y: 15
+  }, {
+    type: 'stop',
+    x: 85,
+    y: 5,
+    orientation: 'left',
+    label: {
+      text: 'Carousel of Progress',
+      alignment: 'left'
+    }
+  }, {
+    type: 'stop',
+    x: 85,
+    y: 0,
+    orientation: 'left',
+    label: {
+      text: 'Tomorrowland Speedway',
+      alignment: 'left'
+    }
+  }, {
+    type: 'endcap',
+    x: 85,
+    y: -5,
+    orientation: 'horizontal',
+    label: {
+      text: 'Cosmic Starlight Cafe',
+      alignment: 'left'
+    }
+  }]
+}, {
+  color: '#1d3f95',
+  points: [{
+    type: 'point',
+    x: 80,
+    y: 20
+  }, {
+    type: 'corner',
+    x: 85,
+    y: 20
+  }, {
+    type: 'point',
+    x: 85,
+    y: 25
+  }, {
+    type: 'endcap',
+    x: 85,
+    y: 32,
+    label: {
+      text: 'Space Mountain',
+      alignment: 'left'
+    }
+  }]
+}, {
+  name: 'Liberty Square',
+  color: '#029ddd',
+  points: [{
+    type: 'point',
+    x: 30,
+    y: 10
+  }, {
+    type: 'stop',
+    x: 17,
+    y: 10,
+    orientation: 'up',
+    label: {
+      text: 'Hall of\nPresidents',
+      alignment: 'above'
+    }
+  }, {
+    type: 'stop',
+    x: 11,
+    y: 10,
+    orientation: 'down',
+    label: {
+      text: 'Christmas\nShoppe',
+      alignment: 'below'
+    }
+  }, {
+    type: 'stop',
+    x: 5,
+    y: 10,
+    orientation: 'up',
+    label: {
+      text: 'Liberty Tree\nTavern',
+      alignment: 'above'
+    }
+  }, {
+    type: 'station',
+    x: -5,
+    y: 10,
+    label: {
+      text: 'Liberty Square\nRiverboat',
+      alignment: 'left'
+    }
+  }, {
+    type: 'endcap',
+    x: -5,
+    y: -10,
+    label: {
+      text: 'Haunted Mansion',
+      alignment: 'right'
+    }
+  }]
+}, {
+  name: 'Frontierland',
+  color: '#af6110',
+  points: [{
+    type: 'stop',
+    x: -20,
+    y: 20,
+    orientation: 'down'
+  }, {
+    type: 'stop',
+    x: -30,
+    y: 20,
+    orientation: 'down'
+  }, {
+    type: 'station',
+    x: -40,
+    y: 20,
+    label: {
+      text: 'WDW\nRailroad',
+      alignment: 'left'
+    }
+  }, {
+    type: 'stop',
+    x: -40,
+    y: 15,
+    label: {
+      text: 'Splash Mountain',
+      alignment: 'right'
+    }
+  }, {
+    type: 'stop',
+    x: -40,
+    y: 10,
+    label: {
+      text: 'Tom Sawyer\nRafts',
+      alignment: 'right'
+    }
+  }, {
+    type: 'endcap',
+    x: -40,
+    y: 0,
+    label: {
+      text: 'Big Thunder Mountain',
+      alignment: 'right'
+    }
+  }]
+}, {
+  name: 'Adventureland',
+  color: '#00853e',
+  offset: {
+    y: 1,
+    x: 0
+  },
+  points: [{
+    type: 'point',
+    x: 30,
+    y: 10
+  }, {
+    type: 'stop',
+    x: 11,
+    y: 10,
+    orientation: 'down'
+  }, {
+    type: 'point',
+    x: -5,
+    y: 10
+  }, {
+    type: 'point',
+    x: -5,
+    y: 15
+  }, {
+    type: 'corner',
+    x: -5,
+    y: 20
+  }, {
+    type: 'point',
+    x: -10,
+    y: 20
+  }, {
+    type: 'stop',
+    x: -20,
+    y: 20,
+    orientation: 'down',
+    label: {
+      text: 'Country Bear\nJamboree',
+      alignment: 'below'
+    }
+  }, {
+    type: 'stop',
+    x: -30,
+    y: 20,
+    orientation: 'down',
+    label: {
+      text: 'Pecos\nBill',
+      alignment: 'below'
+    }
+  }, {
+    type: 'point',
+    x: -40,
+    y: 20
+  }, {
+    type: 'point',
+    x: -40,
+    y: 40
+  }, {
+    type: 'corner',
+    x: -40,
+    y: 45
+  }, {
+    type: 'stop',
+    x: -35,
+    y: 45,
+    orientation: 'down',
+    label: {
+      text: 'Pirates of\nthe Caribbean',
+      alignment: 'below'
+    }
+  }, {
+    type: 'stop',
+    x: -30,
+    y: 45,
+    orientation: 'up',
+    label: {
+      text: 'Tortuga\nTavern',
+      alignment: 'above'
+    }
+  }, {
+    type: 'stop',
+    x: -20,
+    y: 45,
+    orientation: 'up',
+    label: {
+      text: 'Enchanted\nTiki Room',
+      alignment: 'above'
+    }
+  }, {
+    type: 'stop',
+    x: -18,
+    y: 45,
+    orientation: 'down',
+    label: {
+      text: 'Jungle Cruise',
+      alignment: 'below'
+    }
+  }, {
+    type: 'point',
+    x: -10,
+    y: 45
+  }, {
+    type: 'corner',
+    x: -5,
+    y: 45
+  }, {
+    type: 'point',
+    x: -5,
+    y: 40
+  }, {
+    type: 'endcap',
+    x: -5,
+    y: 32,
+    label: {
+      text: 'Swiss Family\nTreehouse',
+      alignment: 'right'
+    }
+  }]
+}, {
+  name: 'Fantasyland',
+  color: '#ffd203',
+  points: [{
+    type: 'point',
+    x: 30,
+    y: 10
+  }, {
+    type: 'stop',
+    x: 30,
+    y: -5,
+    label: {
+      text: 'Cinderella\'s\nRoyal Table',
+      alignment: 'right'
+    }
+  }, {
+    type: 'stop',
+    x: 30,
+    y: -10,
+    label: {
+      text: 'Prince Charming Carousel',
+      alignment: 'right'
+    }
+  }, {
+    type: 'point',
+    x: 30,
+    y: -20
+  }, {
+    type: 'corner',
+    x: 30,
+    y: -25
+  }, {
+    type: 'stop',
+    x: 35,
+    y: -25,
+    orientation: 'up',
+    label: {
+      text: 'Enchanted\nTales',
+      alignment: 'above'
+    }
+  }, {
+    type: 'stop',
+    x: 45,
+    y: -25,
+    orientation: 'up',
+    label: {
+      text: 'Be Our\nGuest',
+      alignment: 'above'
+    }
+  }, {
+    type: 'stop',
+    x: 55,
+    y: -25,
+    orientation: 'up',
+    label: {
+      text: 'Gaston\'s\nTavern',
+      alignment: 'above'
+    }
+  }, {
+    type: 'stop',
+    x: 65,
+    y: -25,
+    orientation: 'up',
+    label: {
+      text: 'Under\nthe Sea',
+      alignment: 'above'
+    }
+  }, {
+    type: 'stop',
+    x: 75,
+    y: -25,
+    orientation: 'up',
+    label: {
+      text: 'Big Top\nSouveniers',
+      alignment: 'above'
+    }
+  }, {
+    type: 'stop',
+    x: 77,
+    y: -25,
+    orientation: 'down',
+    label: {
+      text: 'Dumbo',
+      alignment: 'below'
+    }
+  }, {
+    type: 'stop',
+    x: 85,
+    y: -25,
+    orientation: 'up',
+    label: {
+      text: 'Pete\'s Silly\nSideshow',
+      alignment: 'above'
+    }
+  }, {
+    type: 'stop',
+    x: 87,
+    y: -25,
+    orientation: 'down',
+    label: {
+      text: 'Barnstormer',
+      alignment: 'below'
+    }
+  }, {
+    type: 'station',
+    x: 95,
+    y: -25,
+    label: {
+      text: 'WDW\nRailroad',
+      alignment: 'right'
+    }
+  }]
+}, {
+  color: '#ffd203',
+  points: [{
+    type: 'point',
+    x: 35,
+    y: -25
+  }, {
+    type: 'corner',
+    x: 40,
+    y: -25
+  }, {
+    type: 'point',
+    x: 40,
+    y: -20
+  }, {
+    type: 'corner',
+    x: 40,
+    y: -15
+  }, {
+    type: 'point',
+    x: 45,
+    y: -15
+  }, {
+    type: 'stop',
+    orientation: 'up',
+    x: 50,
+    y: -15,
+    label: {
+      text: 'Seven Dwarfs\nMine Train',
+      alignment: 'above'
+    }
+  }, {
+    type: 'point',
+    x: 55,
+    y: -15
+  }, {
+    type: 'corner',
+    x: 55,
+    y: -15
+  }, {
+    type: 'point',
+    x: 55,
+    y: -15
+  }, {
+    type: 'corner',
+    x: 60,
+    y: -15
+  }, {
+    type: 'point',
+    x: 60,
+    y: -20
+  }, {
+    type: 'corner',
+    x: 60,
+    y: -25
+  }, {
+    type: 'point',
+    x: 65,
+    y: -25
+  }]
+}, {
+  color: '#ffd203',
+  points: [{
+    type: 'point',
+    x: 30,
+    y: -20
+  }, {
+    type: 'corner',
+    x: 30,
+    y: -25
+  }, {
+    type: 'point',
+    x: 25,
+    y: -25
+  }, {
+    type: 'stop',
+    x: 20,
+    y: -25,
+    orientation: 'up',
+    label: {
+      text: 'Peter Pan\'s\nFlight',
+      alignment: 'above'
+    }
+  }, {
+    type: 'endcap',
+    x: 15,
+    y: -25,
+    orientation: 'vertical',
+    label: {
+      text: 'it\'s a small world',
+      alignment: 'left'
+    }
+  }]
+}];
 
 /***/ }),
 /* 5 */
@@ -5830,14 +6356,16 @@ Object.defineProperty(exports, "__esModule", {
 
 var _constants = __webpack_require__(0);
 
-var buildStop = function buildStop(group, _ref) {
-  var x = _ref.x,
-      y = _ref.y,
-      _ref$orientation = _ref.orientation,
-      orientation = _ref$orientation === undefined ? 'right' : _ref$orientation,
-      label = _ref.label;
+var buildStop = function buildStop(group, point, color) {
+  var x = point.x,
+      y = point.y,
+      _point$orientation = point.orientation,
+      orientation = _point$orientation === undefined ? 'right' : _point$orientation,
+      label = point.label;
 
   var stop = group.rect(_constants.SIZE_UNIT * 2, _constants.SIZE_UNIT).move(x, y);
+
+  stop.fill(color);
 
   switch (orientation) {
     case 'right':
@@ -5861,20 +6389,29 @@ var buildStop = function buildStop(group, _ref) {
         alignment = label.alignment;
 
     var labelElement = group.text(text).move(x, y);
-    var length = Math.ceil(labelElement.length());
+    var leading = labelElement.leading().value;
+    var lines = labelElement.lines().length();
+    var height = leading * lines + leading / 2;
 
     switch (alignment) {
       case 'right':
-        labelElement.dmove(_constants.SIZE_UNIT * 2.5, -_constants.SIZE_UNIT * 1.6);
+        labelElement.font({ anchor: 'start' });
+        labelElement.dx(_constants.SIZE_UNIT * 2.5);
+        labelElement.dy(-_constants.SIZE_UNIT * height * 0.9);
         break;
       case 'left':
-        labelElement.dmove(-(_constants.SIZE_UNIT * 2.5) - length, -_constants.SIZE_UNIT * 1.6);
+        labelElement.font({ anchor: 'end' });
+        labelElement.dx(-_constants.SIZE_UNIT * 2.5);
+        labelElement.dy(-_constants.SIZE_UNIT * height * 0.9);
         break;
       case 'below':
-        labelElement.dmove((-length - _constants.SIZE_UNIT) / 2, _constants.SIZE_UNIT);
+        labelElement.font({ anchor: 'middle' });
+        labelElement.dy(_constants.SIZE_UNIT * 2);
         break;
       case 'above':
-        labelElement.dmove((-length - _constants.SIZE_UNIT) / 2, -_constants.SIZE_UNIT * 5);
+        labelElement.font({ anchor: 'middle' });
+        labelElement.dy(-_constants.SIZE_UNIT * 5);
+        labelElement.dy(-height * _constants.SIZE_UNIT * 1.25);
         break;
       default:
         break;
@@ -5899,25 +6436,56 @@ Object.defineProperty(exports, "__esModule", {
 
 var _constants = __webpack_require__(0);
 
-var buildEndCap = function buildEndCap(group, _ref) {
-  var x = _ref.x,
-      y = _ref.y,
-      _ref$orientation = _ref.orientation,
-      orientation = _ref$orientation === undefined ? 'horizontal' : _ref$orientation,
-      labelText = _ref.label;
+var buildEndCap = function buildEndCap(group, point, color) {
+  var x = point.x,
+      y = point.y,
+      _point$orientation = point.orientation,
+      orientation = _point$orientation === undefined ? 'horizontal' : _point$orientation,
+      label = point.label;
 
   var endCap = group.rect(_constants.SIZE_UNIT * 3, _constants.SIZE_UNIT);
-  var label = group.text(labelText);
 
-  endCap.move(x - _constants.SIZE_UNIT * 1.5, y - _constants.SIZE_UNIT / 2);
-  label.move(x + _constants.SIZE_UNIT, y - _constants.SIZE_UNIT);
+  endCap.fill(color);
+  endCap.center(x, y);
 
   if (orientation === 'vertical') {
     endCap.rotate(90);
   }
 
-  if (orientation === 'horizontal') {
-    label.dx(_constants.SIZE_UNIT);
+  if (label && label.text) {
+    var text = label.text,
+        alignment = label.alignment;
+
+    var labelElement = group.text(text).move(x, y);
+    var leading = labelElement.leading().value;
+    var lines = labelElement.lines().length();
+    var height = leading * lines + leading / 2;
+
+    switch (alignment) {
+      case 'right':
+        labelElement.font({ anchor: 'start' });
+        labelElement.dx(_constants.SIZE_UNIT * 1.5);
+        labelElement.dy(-_constants.SIZE_UNIT * height);
+        if (orientation === 'horizontal') labelElement.dx(_constants.SIZE_UNIT);
+        break;
+      case 'left':
+        labelElement.font({ anchor: 'end' });
+        labelElement.dx(-_constants.SIZE_UNIT * 1.5);
+        labelElement.dy(-_constants.SIZE_UNIT * height);
+        if (orientation === 'horizontal') labelElement.dx(-_constants.SIZE_UNIT);
+        break;
+      case 'below':
+        labelElement.font({ anchor: 'middle' });
+        labelElement.dy(_constants.SIZE_UNIT * 2);
+        break;
+      case 'above':
+        labelElement.font({ anchor: 'middle' });
+        labelElement.dy(-_constants.SIZE_UNIT * 5);
+        labelElement.dy(-height * _constants.SIZE_UNIT * 1.5);
+        break;
+      default:
+        break;
+    }
   }
 
   return endCap;
@@ -5940,23 +6508,16 @@ var _constants = __webpack_require__(0);
 
 var DIAMETER = _constants.SIZE_UNIT * 3;
 
-var buildStation = function buildStation(group, _ref) {
-  var x = _ref.x,
-      y = _ref.y,
-      _ref$orientation = _ref.orientation,
-      orientation = _ref$orientation === undefined ? 'vertical' : _ref$orientation,
-      label = _ref.label;
+var buildStation = function buildStation(group, point) {
+  var x = point.x,
+      y = point.y,
+      label = point.label;
 
-  var station = group.circle(DIAMETER).move(x, y);
+  var station = group.circle(DIAMETER).center(x, y);
 
   station.fill('white');
   station.stroke({ color: 'black', width: _constants.SIZE_UNIT * 0.8 });
-
-  if (orientation === 'horizontal') {
-    station.dmove(-_constants.SIZE_UNIT * 2, -_constants.SIZE_UNIT * 1.5);
-  } else {
-    station.dmove(-_constants.SIZE_UNIT * 1.5, -_constants.SIZE_UNIT * 1.5);
-  }
+  station.front();
 
   if (label && label.text) {
     var text = label.text,
@@ -5964,20 +6525,33 @@ var buildStation = function buildStation(group, _ref) {
         alignment = _label$alignment === undefined ? 'above' : _label$alignment;
 
     var labelElement = group.text(text).move(x, y);
-    var length = Math.ceil(labelElement.length());
+    var leading = labelElement.leading().value;
+    var lines = labelElement.lines().length();
+    var height = leading * lines + leading / 2;
 
     switch (alignment) {
       case 'right':
-        labelElement.dmove(_constants.SIZE_UNIT * 2.5, -_constants.SIZE_UNIT * 2);
+        labelElement.font({ anchor: 'start' });
+        labelElement.dy(-_constants.SIZE_UNIT * height);
+        labelElement.dx(DIAMETER);
         break;
       case 'left':
-        labelElement.dmove(-(_constants.SIZE_UNIT * 2.5) - length, -_constants.SIZE_UNIT * 2);
+        labelElement.font({ anchor: 'end' });
+        labelElement.dy(-_constants.SIZE_UNIT * height);
+        labelElement.dx(-DIAMETER);
         break;
       case 'below':
-        labelElement.dmove(-DIAMETER, DIAMETER / 2);
+        labelElement.font({ anchor: 'middle' });
+        labelElement.dy(height + _constants.SIZE_UNIT * 2);
+        break;
+      case 'above-right':
+        labelElement.font({ anchor: 'start' });
+        labelElement.dx(_constants.SIZE_UNIT * 2.5);
+        labelElement.dy(-(height + (DIAMETER + _constants.SIZE_UNIT) * 2));
         break;
       case 'above':
-        labelElement.dmove(-DIAMETER, -DIAMETER - 2 * _constants.SIZE_UNIT);
+        labelElement.font({ anchor: 'middle' });
+        labelElement.dy(-(height + (DIAMETER + _constants.SIZE_UNIT) * 2));
         break;
       default:
         break;
@@ -5989,6 +6563,74 @@ var buildStation = function buildStation(group, _ref) {
 
 exports.default = buildStation;
 
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _constants = __webpack_require__(0);
+
+var _ = __webpack_require__(1);
+
+var _2 = _interopRequireDefault(_);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var buildLine = function buildLine(group, _ref) {
+  var rawPoints = _ref.points,
+      _ref$offset = _ref.offset,
+      offset = _ref$offset === undefined ? {} : _ref$offset,
+      color = _ref.color;
+
+  var lineGroup = group.group();
+  var points = rawPoints.map(function (p) {
+    return _extends({}, p, {
+      x: p.x * _constants.SIZE_UNIT,
+      y: p.y * _constants.SIZE_UNIT
+    });
+  });
+
+  var linePoints = [];
+
+  points.forEach(function (element, index, arr) {
+    var type = element.type,
+        x = element.x,
+        y = element.y;
+
+    var previous = arr[index - 1];
+    var next = arr[index + 1];
+
+    (0, _2.default)(lineGroup, element, color);
+
+    if (!previous) {
+      linePoints.push('M' + x + ' ' + y);
+    } else if (type === 'corner' && next) {
+      linePoints.push('Q' + x + ' ' + y + ' ' + next.x + ' ' + next.y);
+    } else {
+      linePoints.push('L' + x + ' ' + y);
+    }
+  });
+
+  lineGroup.path(linePoints.join(' ')).fill('none').stroke({ width: _constants.SIZE_UNIT, color: color }).back();
+
+  var _offset$x = offset.x,
+      x = _offset$x === undefined ? 0 : _offset$x,
+      _offset$y = offset.y,
+      y = _offset$y === undefined ? 0 : _offset$y;
+
+  lineGroup.dmove(x * _constants.SIZE_UNIT, y * _constants.SIZE_UNIT);
+};
+
+exports.default = buildLine;
+
 /***/ })
 /******/ ]);
-//# sourceMappingURL=main.2d587ffa.js.map
+//# sourceMappingURL=main.1fbaf6b1.js.map
