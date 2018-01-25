@@ -2,7 +2,10 @@ export default [{
   type: 'station',
   x: 10,
   y: 10,
-  label: 'Castle',
+  label: {
+    text: 'Castle',
+    alignment: 'left',
+  },
 }, {
   type: 'stop',
   x: 10,
@@ -30,7 +33,10 @@ export default [{
   x: 20,
   y: 30,
   orientation: 'horizontal',
-  label: 'Hotel',
+  label: {
+    text: 'Hotel',
+    alignment: 'above',
+  },
 }, {
   type: 'stop',
   x: 25,
