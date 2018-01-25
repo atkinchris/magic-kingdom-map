@@ -1,7 +1,10 @@
 import { SIZE_UNIT } from '../constants'
 
-const buildStop = (group, { x, y, orientation = 'right', label }) => {
+const buildStop = (group, point, color) => {
+  const { x, y, orientation = 'right', label } = point
   const stop = group.rect(SIZE_UNIT * 2, SIZE_UNIT).move(x, y)
+
+  stop.fill(color)
 
   switch (orientation) {
     case 'right':

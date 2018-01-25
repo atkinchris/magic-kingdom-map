@@ -1,5 +1,6 @@
 export default {
   name: 'Main Street, USA',
+  color: 'red',
   points: [{
     type: 'station',
     x: 30,

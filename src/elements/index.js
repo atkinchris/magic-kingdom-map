@@ -3,16 +3,16 @@ import buildEndCap from './endCap'
 import buildStation from './station'
 import buildLine from './line'
 
-const buildElement = (group, element) => {
+const buildElement = (group, element, color) => {
   const { type } = element
 
   switch (type) {
     case 'stop':
-      return buildStop(group, element)
+      return buildStop(group, element, color)
     case 'endcap':
-      return buildEndCap(group, element)
+      return buildEndCap(group, element, color)
     case 'station':
-      return buildStation(group, element)
+      return buildStation(group, element, color)
     default:
       return null
   }
