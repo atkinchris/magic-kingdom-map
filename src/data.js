@@ -172,6 +172,25 @@ export default [{
     },
   }],
 }, {
+  color: '#1d3f95',
+  points: [{
+    type: 'point',
+    x: 80,
+    y: 20,
+  }, {
+    type: 'corner',
+    x: 85,
+    y: 20,
+  }, {
+    type: 'endcap',
+    x: 85,
+    y: 25,
+    label: {
+      text: 'Space\nMountain',
+      alignment: 'right',
+    },
+  }],
+}, {
   name: 'Liberty Square',
   color: '#029ddd',
   points: [{
