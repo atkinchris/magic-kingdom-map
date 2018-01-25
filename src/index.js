@@ -12,8 +12,8 @@ const mapData = [
   { type: 'endcap', x: 250, y: 300, orientation: 'vertical' },
 ]
 
-const buildEndCap = (map, x, y, orientation = 'horizontal') => {
-  const endCap = map.rect(SIZE_UNIT * 2, SIZE_UNIT).move(x - SIZE_UNIT, y - (SIZE_UNIT / 2))
+const buildEndCap = (group, x, y, orientation = 'horizontal') => {
+  const endCap = group.rect(SIZE_UNIT * 2, SIZE_UNIT).move(x - SIZE_UNIT, y - (SIZE_UNIT / 2))
 
   if (orientation === 'vertical') {
     endCap.rotate(90)
@@ -22,8 +22,8 @@ const buildEndCap = (map, x, y, orientation = 'horizontal') => {
   return endCap
 }
 
-const buildStop = (map, x, y, orientation = 'right') => {
-  const stop = map.rect(SIZE_UNIT * 2, SIZE_UNIT).move(x, y)
+const buildStop = (group, x, y, orientation = 'right') => {
+  const stop = group.rect(SIZE_UNIT * 2, SIZE_UNIT).move(x, y)
 
   switch (orientation) {
     case 'right':
@@ -46,7 +46,7 @@ const buildStop = (map, x, y, orientation = 'right') => {
 }
 
 const buildMap = () => {
-  const map = SVG('map')
+  const group = SVG('map').group()
 
   const linePoints = []
 
@@ -55,11 +55,11 @@ const buildMap = () => {
     const next = arr[index + 1]
 
     if (type === 'stop') {
-      buildStop(map, x, y, orientation)
+      buildStop(group, x, y, orientation)
     }
 
     if (type === 'endcap') {
-      buildEndCap(map, x, y, orientation)
+      buildEndCap(group, x, y, orientation)
     }
 
     if (!previous) {
@@ -71,7 +71,7 @@ const buildMap = () => {
     }
   })
 
-  map.path(linePoints.join(' ')).fill('none').stroke({ width: SIZE_UNIT })
+  group.path(linePoints.join(' ')).fill('none').stroke({ width: SIZE_UNIT })
 }
 
 buildMap()
