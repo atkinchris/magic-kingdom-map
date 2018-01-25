@@ -68,7 +68,7 @@ export default [{
     x: 30,
     y: 55,
     label: {
-      text: 'WDW Railroad',
+      text: 'WDW\nRailroad',
       alignment: 'below',
     },
   }],
@@ -251,5 +251,107 @@ export default [{
     type: 'point',
     x: -5,
     y: 10,
+  }, {
+    type: 'point',
+    x: -5,
+    y: 15,
+  }, {
+    type: 'corner',
+    x: -5,
+    y: 20,
+  }, {
+    type: 'point',
+    x: -10,
+    y: 20,
+  }, {
+    type: 'stop',
+    x: -20,
+    y: 20,
+    orientation: 'down',
+    label: {
+      text: 'Country Bear\nJamboree',
+      alignment: 'below',
+    },
+  }, {
+    type: 'stop',
+    x: -30,
+    y: 20,
+    orientation: 'down',
+    label: {
+      text: 'Pecos\nBill',
+      alignment: 'below',
+    },
+  }, {
+    type: 'station',
+    x: -40,
+    y: 20,
+    label: {
+      text: 'WDW\nRailroad',
+      alignment: 'left',
+    },
+  }, {
+    type: 'point',
+    x: -40,
+    y: 40,
+  }, {
+    type: 'corner',
+    x: -40,
+    y: 45,
+  }, {
+    type: 'stop',
+    x: -35,
+    y: 45,
+    orientation: 'down',
+    label: {
+      text: 'Pirates of\nthe Caribbean',
+      alignment: 'below',
+    },
+  }, {
+    type: 'stop',
+    x: -30,
+    y: 45,
+    orientation: 'up',
+    label: {
+      text: 'Tortuga\nTavern',
+      alignment: 'above',
+    },
+  }, {
+    type: 'stop',
+    x: -20,
+    y: 45,
+    orientation: 'up',
+    label: {
+      text: 'Enchanted\nTiki Room',
+      alignment: 'above',
+    },
+  }, {
+    type: 'stop',
+    x: -18,
+    y: 45,
+    orientation: 'down',
+    label: {
+      text: 'Jungle Cruise',
+      alignment: 'below',
+    },
+  }, {
+    type: 'point',
+    x: -10,
+    y: 45,
+  }, {
+    type: 'corner',
+    x: -5,
+    y: 45,
+  }, {
+    type: 'point',
+    x: -5,
+    y: 40,
+  }, {
+    type: 'endcap',
+    x: -5,
+    y: 32,
+    label: {
+      text: 'Swiss Family Treehouse',
+      alignment: 'left',
+    },
   }],
 }]
