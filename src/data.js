@@ -7,7 +7,7 @@ export default [{
     y: 10,
     label: {
       text: 'Cinderella\nCastle',
-      alignment: 'above',
+      alignment: 'above-right',
     },
   }, {
     type: 'stop',
