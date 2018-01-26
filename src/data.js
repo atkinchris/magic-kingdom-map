@@ -1,6 +1,6 @@
 export default [{
   name: 'Main Street, USA',
-  color: '#ee2f25',
+  color: '#f02a0f',
   points: [{
     type: 'station',
     x: 30,
@@ -74,7 +74,7 @@ export default [{
   }],
 }, {
   name: 'Tomorrowland',
-  color: '#1d3f95',
+  color: '#193f96',
   points: [{
     type: 'point',
     x: 30,
@@ -196,7 +196,7 @@ export default [{
   }],
 }, {
   name: 'Liberty Square',
-  color: '#029ddd',
+  color: '#009edf',
   points: [{
     type: 'point',
     x: 30,
@@ -247,7 +247,7 @@ export default [{
   }],
 }, {
   name: 'Frontierland',
-  color: '#af6110',
+  color: '#b15e00',
   points: [{
     type: 'stop',
     x: -20,
@@ -293,7 +293,7 @@ export default [{
   }],
 }, {
   name: 'Adventureland',
-  color: '#00853e',
+  color: '#00853d',
   offset: {
     y: 1,
     x: 0,
@@ -412,7 +412,7 @@ export default [{
   }],
 }, {
   name: 'Fantasyland',
-  color: '#ffd203',
+  color: '#ffd200',
   points: [{
     type: 'point',
     x: 30,
