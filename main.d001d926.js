@@ -73,9 +73,13 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-/* eslint-disable import/prefer-default-export */
-
 var SIZE_UNIT = exports.SIZE_UNIT = 8;
+var FONT = exports.FONT = {
+  size: 14,
+  family: "'Roboto Condensed', sans-serif",
+  weight: 'bold',
+  fill: '#193f96'
+};
 
 /***/ }),
 /* 1 */
@@ -87,27 +91,35 @@ var SIZE_UNIT = exports.SIZE_UNIT = 8;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.buildWater = exports.buildLine = exports.buildStation = exports.buildEndCap = exports.buildStop = undefined;
+exports.buildLegend = exports.buildExtra = exports.buildWater = exports.buildLine = exports.buildStation = exports.buildEndCap = exports.buildStop = undefined;
 
-var _stop = __webpack_require__(7);
+var _stop = __webpack_require__(8);
 
 var _stop2 = _interopRequireDefault(_stop);
 
-var _endCap = __webpack_require__(8);
+var _endCap = __webpack_require__(9);
 
 var _endCap2 = _interopRequireDefault(_endCap);
 
-var _station = __webpack_require__(9);
+var _station = __webpack_require__(10);
 
 var _station2 = _interopRequireDefault(_station);
 
-var _line = __webpack_require__(10);
+var _line = __webpack_require__(11);
 
 var _line2 = _interopRequireDefault(_line);
 
-var _water = __webpack_require__(11);
+var _water = __webpack_require__(12);
 
 var _water2 = _interopRequireDefault(_water);
+
+var _extra = __webpack_require__(13);
+
+var _extra2 = _interopRequireDefault(_extra);
+
+var _legend = __webpack_require__(14);
+
+var _legend2 = _interopRequireDefault(_legend);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -133,6 +145,8 @@ exports.buildEndCap = _endCap2.default;
 exports.buildStation = _station2.default;
 exports.buildLine = _line2.default;
 exports.buildWater = _water2.default;
+exports.buildExtra = _extra2.default;
+exports.buildLegend = _legend2.default;
 
 /***/ }),
 /* 2 */
@@ -158,13 +172,20 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 var svg = (0, _svg2.default)('map');
 var map = svg.group();
 
-var allPoints = _data.lines.reduce(function (out, _ref) {
-  var points = _ref.points;
+var legend = _data.lines.filter(function (line) {
+  return line.name;
+}).map(function (_ref) {
+  var name = _ref.name,
+      color = _ref.color;
+  return { name: name, color: color };
+});
+var allPoints = _data.lines.reduce(function (out, _ref2) {
+  var points = _ref2.points;
   return [].concat(_toConsumableArray(out), _toConsumableArray(points));
 }, []);
-var bounds = allPoints.reduce(function (out, _ref2) {
-  var x = _ref2.x,
-      y = _ref2.y;
+var bounds = allPoints.reduce(function (out, _ref3) {
+  var x = _ref3.x,
+      y = _ref3.y;
 
   /* eslint-disable no-param-reassign */
   if (x < out.left) out.left = x;
@@ -182,13 +203,20 @@ _data.water.forEach(function (w) {
 _data.lines.reverse().forEach(function (line) {
   return (0, _elements.buildLine)(map, line);
 });
+_data.extras.forEach(function (extra) {
+  return (0, _elements.buildExtra)(map, extra);
+});
+
+(0, _elements.buildLegend)(svg, legend);
 
 var width = (-bounds.left + bounds.right) * _constants.SIZE_UNIT + _constants.SIZE_UNIT * 25;
 var height = (-bounds.top + bounds.bottom) * _constants.SIZE_UNIT + _constants.SIZE_UNIT * 20;
 
 svg.size(width, height);
 map.dmove(-bounds.left * _constants.SIZE_UNIT, -bounds.top * _constants.SIZE_UNIT);
-map.dmove(_constants.SIZE_UNIT * 12, _constants.SIZE_UNIT * 12);
+map.dmove(_constants.SIZE_UNIT * 10, _constants.SIZE_UNIT * 6);
+
+console.log(svg.svg());
 
 /***/ }),
 /* 3 */
@@ -5777,6 +5805,15 @@ Object.defineProperty(exports, 'water', {
   }
 });
 
+var _extras = __webpack_require__(7);
+
+Object.defineProperty(exports, 'extras', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_extras).default;
+  }
+});
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
@@ -5815,7 +5852,7 @@ exports.default = [{
     y: 40,
     orientation: 'left',
     label: {
-      text: 'Casey\'s Corner',
+      text: "Casey's Corner",
       alignment: 'left'
     }
   }, {
@@ -5919,7 +5956,7 @@ exports.default = [{
     y: 20,
     orientation: 'up',
     label: {
-      text: 'Astro Orbit\nPeople Mover',
+      text: 'Astro Orbiter\nPeople Mover',
       alignment: 'above'
     }
   }, {
@@ -5958,7 +5995,7 @@ exports.default = [{
     y: -5,
     orientation: 'horizontal',
     label: {
-      text: 'Cosmic Starlight Cafe',
+      text: "Cosmic Ray's Starlight Café",
       alignment: 'left'
     }
   }]
@@ -5986,16 +6023,26 @@ exports.default = [{
     }
   }]
 }, {
+  points: [{
+    type: 'station',
+    x: -5,
+    y: 10,
+    label: {
+      text: 'Liberty Square\nRiverboat',
+      alignment: 'left'
+    }
+  }]
+}, {
   name: 'Liberty Square',
   color: '#009edf',
   points: [{
     type: 'point',
     x: 30,
-    y: 10
+    y: 9.5
   }, {
     type: 'stop',
     x: 17,
-    y: 10,
+    y: 9.5,
     orientation: 'up',
     label: {
       text: 'Hall of\nPresidents',
@@ -6004,7 +6051,7 @@ exports.default = [{
   }, {
     type: 'stop',
     x: 11,
-    y: 10,
+    y: 9.5,
     orientation: 'down',
     label: {
       text: 'Christmas\nShoppe',
@@ -6013,28 +6060,30 @@ exports.default = [{
   }, {
     type: 'stop',
     x: 5,
-    y: 10,
+    y: 9.5,
     orientation: 'up',
     label: {
       text: 'Liberty Tree\nTavern',
       alignment: 'above'
     }
   }, {
-    type: 'station',
+    type: 'point',
     x: -5,
-    y: 10,
-    label: {
-      text: 'Liberty Square\nRiverboat',
-      alignment: 'left'
-    }
+    y: 9.5
   }, {
     type: 'endcap',
     x: -5,
-    y: -10,
+    y: -15,
     label: {
       text: 'Haunted Mansion',
       alignment: 'right'
     }
+  }]
+}, {
+  points: [{
+    type: 'station',
+    x: -40,
+    y: 20
   }]
 }, {
   name: 'Frontierland',
@@ -6042,34 +6091,30 @@ exports.default = [{
   points: [{
     type: 'stop',
     x: -20,
-    y: 20,
+    y: 19.5,
     orientation: 'down'
   }, {
     type: 'stop',
     x: -30,
-    y: 20,
+    y: 19.5,
     orientation: 'down'
   }, {
-    type: 'station',
+    type: 'point',
     x: -40,
-    y: 20,
-    label: {
-      text: 'WDW\nRailroad',
-      alignment: 'left'
-    }
+    y: 19.5
   }, {
     type: 'stop',
     x: -40,
-    y: 12,
-    orientation: 'left',
+    y: 15,
+    orientation: 'right',
     label: {
       text: 'Splash\nMountain',
-      alignment: 'left'
+      alignment: 'right'
     }
   }, {
     type: 'stop',
     x: -40,
-    y: 10,
+    y: 8,
     label: {
       text: 'Tom Sawyer\nRafts',
       alignment: 'right'
@@ -6093,16 +6138,16 @@ exports.default = [{
   points: [{
     type: 'point',
     x: 30,
-    y: 10
+    y: 9.5
   }, {
     type: 'stop',
     x: 11,
-    y: 10,
+    y: 9.5,
     orientation: 'down'
   }, {
     type: 'point',
     x: -5,
-    y: 10
+    y: 9.5
   }, {
     type: 'point',
     x: -5,
@@ -6110,15 +6155,15 @@ exports.default = [{
   }, {
     type: 'corner',
     x: -5,
-    y: 20
+    y: 19.5
   }, {
     type: 'point',
     x: -10,
-    y: 20
+    y: 19.5
   }, {
     type: 'stop',
     x: -20,
-    y: 20,
+    y: 19.5,
     orientation: 'down',
     label: {
       text: 'Country Bear\nJamboree',
@@ -6127,16 +6172,16 @@ exports.default = [{
   }, {
     type: 'stop',
     x: -30,
-    y: 20,
+    y: 19.5,
     orientation: 'down',
     label: {
-      text: 'Pecos\nBill',
+      text: 'Pecos Bill\nTall Tale Inn',
       alignment: 'below'
     }
   }, {
     type: 'point',
     x: -40,
-    y: 20
+    y: 19.5
   }, {
     type: 'point',
     x: -40,
@@ -6165,7 +6210,16 @@ exports.default = [{
     }
   }, {
     type: 'stop',
-    x: -20,
+    x: -23,
+    y: 45,
+    orientation: 'down',
+    label: {
+      text: 'Aloha Isle',
+      alignment: 'below'
+    }
+  }, {
+    type: 'stop',
+    x: -16,
     y: 45,
     orientation: 'up',
     label: {
@@ -6174,7 +6228,7 @@ exports.default = [{
     }
   }, {
     type: 'stop',
-    x: -18,
+    x: -10,
     y: 45,
     orientation: 'down',
     label: {
@@ -6210,11 +6264,15 @@ exports.default = [{
     x: 30,
     y: 10
   }, {
+    type: 'station',
+    x: 30,
+    y: 5
+  }, {
     type: 'stop',
     x: 30,
     y: -5,
     label: {
-      text: 'Cinderella\'s\nRoyal Table',
+      text: "Cinderella's Royal Table",
       alignment: 'right'
     }
   }, {
@@ -6222,7 +6280,7 @@ exports.default = [{
     x: 30,
     y: -10,
     label: {
-      text: 'Prince Charming Carousel',
+      text: 'Prince Charming Regal Carrousel',
       alignment: 'right'
     }
   }, {
@@ -6239,7 +6297,7 @@ exports.default = [{
     y: -25,
     orientation: 'up',
     label: {
-      text: 'Enchanted\nTales',
+      text: 'Enchanted Tales\nwith Belle',
       alignment: 'above'
     }
   }, {
@@ -6257,7 +6315,7 @@ exports.default = [{
     y: -25,
     orientation: 'up',
     label: {
-      text: 'Gaston\'s\nTavern',
+      text: "Gaston's\nTavern",
       alignment: 'above'
     }
   }, {
@@ -6293,7 +6351,7 @@ exports.default = [{
     y: -25,
     orientation: 'up',
     label: {
-      text: 'Pete\'s Silly\nSideshow',
+      text: "Pete's Silly\nSideshow",
       alignment: 'above'
     }
   }, {
@@ -6394,7 +6452,7 @@ exports.default = [{
     y: -25,
     orientation: 'up',
     label: {
-      text: 'Peter Pan\'s\nFlight',
+      text: "Peter Pan's\nFlight",
       alignment: 'above'
     }
   }, {
@@ -6406,6 +6464,98 @@ exports.default = [{
       text: 'it\'s a small world',
       alignment: 'left'
     }
+  }]
+}, {
+  color: '#939ba1',
+  dashed: true,
+  points: [{
+    type: 'point',
+    x: 30,
+    y: 55
+  }, {
+    type: 'point',
+    x: 15,
+    y: 55
+  }, {
+    type: 'corner',
+    x: 10,
+    y: 55
+  }, {
+    type: 'point',
+    x: 10,
+    y: 60
+  }, {
+    type: 'corner',
+    x: 10,
+    y: 65
+  }, {
+    type: 'point',
+    x: 5,
+    y: 65
+  }, {
+    type: 'point',
+    x: -40,
+    y: 65
+  }, {
+    type: 'corner',
+    x: -45,
+    y: 65
+  }, {
+    type: 'point',
+    x: -45,
+    y: 60
+  }, {
+    type: 'station',
+    x: -45,
+    y: 20,
+    label: {
+      text: 'WDW\nRailroad',
+      alignment: 'left'
+    }
+  }, {
+    type: 'point',
+    x: -45,
+    y: -35
+  }, {
+    type: 'corner',
+    x: -45,
+    y: -40
+  }, {
+    type: 'point',
+    x: -40,
+    y: -40
+  }, {
+    type: 'point',
+    x: 90,
+    y: -40
+  }, {
+    type: 'corner',
+    x: 95,
+    y: -40
+  }, {
+    type: 'point',
+    x: 95,
+    y: -35
+  }, {
+    type: 'point',
+    x: 95,
+    y: -25
+  }, {
+    type: 'point',
+    x: 95,
+    y: 50
+  }, {
+    type: 'corner',
+    x: 95,
+    y: 55
+  }, {
+    type: 'point',
+    x: 90,
+    y: 55
+  }, {
+    type: 'point',
+    x: 30,
+    y: 55
   }]
 }];
 
@@ -6419,21 +6569,49 @@ exports.default = [{
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = [{
-  shapes: [{
-    points: [[-33, -35], [-12, -35], [-12, 15], [-33, 15], [-33, -10], [-50, -10], [-50, -17], [-33, -17], [-33, -35]]
-  }, {
-    subtract: true,
-    points: [[-26, -29], [-19, -29], [-19, 9], [-26, 9], [-26, -29]]
-  }]
-}, {
-  shapes: [{
-    points: [[-45, 55], [0, 55], [0, 25], [20, 25], [20, 0], [41, 0], [41, 20], [36, 20], [36, 16], [36, 5], [25, 5], [25, 30], [5, 30], [5, 60], [-45, 60], [-45, 55]]
-  }]
-}];
+exports.default = [[[-33, -45], [-12, -45], [-12, 15], [-33, 15], [-33, -10], [-70, -10], [-70, -17], [-33, -17], [-33, -45]], [[-40, 55], [0, 55], [0, 25], [20, 25], [20, 0], [41, 0], [41, 20], [36, 20], [36, 16], [36, 5], [25, 5], [25, 30], [5, 30], [5, 60], [-40, 60], [-40, 55]]];
 
 /***/ }),
 /* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = [{
+  x: 96.5,
+  y: -23,
+  type: 'rail-symbol'
+}, {
+  x: 32,
+  y: 58.5,
+  type: 'rail-symbol'
+}, {
+  x: -54.5,
+  y: 22,
+  type: 'rail-symbol'
+}, {
+  x: -42.5,
+  y: 20,
+  orientation: 'horizontal',
+  type: 'station-join'
+}, {
+  x: 30,
+  y: 7.5,
+  orientation: 'vertical',
+  type: 'station-join'
+}, {
+  x: -19,
+  y: -14,
+  type: 'label',
+  text: "River's\nof America"
+}];
+
+/***/ }),
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6477,30 +6655,32 @@ var buildStop = function buildStop(group, point, color) {
     var text = label.text,
         alignment = label.alignment;
 
-    var labelElement = group.text(text).move(x, y);
+    var labelElement = group.text(text).move(x, y).font(_constants.FONT);
     var leading = labelElement.leading().value;
     var lines = labelElement.lines().length();
-    var height = leading * lines + leading / 2;
+    var height = leading * lines;
 
     switch (alignment) {
       case 'right':
         labelElement.font({ anchor: 'start' });
         labelElement.dx(_constants.SIZE_UNIT * 2.5);
-        labelElement.dy(-_constants.SIZE_UNIT * height * 0.9);
+        labelElement.dy(-_constants.SIZE_UNIT * height);
         break;
       case 'left':
         labelElement.font({ anchor: 'end' });
         labelElement.dx(-_constants.SIZE_UNIT * 2.5);
-        labelElement.dy(-_constants.SIZE_UNIT * height * 0.9);
+        labelElement.dy(-_constants.SIZE_UNIT * height);
         break;
       case 'below':
         labelElement.font({ anchor: 'middle' });
+        labelElement.dx(-_constants.SIZE_UNIT / 2);
         labelElement.dy(_constants.SIZE_UNIT * 2);
         break;
       case 'above':
         labelElement.font({ anchor: 'middle' });
+        labelElement.dx(-_constants.SIZE_UNIT / 2);
         labelElement.dy(-_constants.SIZE_UNIT * 5);
-        labelElement.dy(-height * _constants.SIZE_UNIT * 1.25);
+        labelElement.dy(-height * _constants.SIZE_UNIT * 1.2);
         break;
       default:
         break;
@@ -6513,7 +6693,7 @@ var buildStop = function buildStop(group, point, color) {
 exports.default = buildStop;
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6545,22 +6725,21 @@ var buildEndCap = function buildEndCap(group, point, color) {
     var text = label.text,
         alignment = label.alignment;
 
-    var labelElement = group.text(text).move(x, y);
+    var labelElement = group.text(text).move(x, y).font(_constants.FONT);
     var leading = labelElement.leading().value;
     var lines = labelElement.lines().length();
-    var height = leading * lines + leading / 2;
+    var height = leading * lines;
 
     switch (alignment) {
       case 'right':
         labelElement.font({ anchor: 'start' });
-        labelElement.dx(_constants.SIZE_UNIT * 1.5);
-        labelElement.dy(-_constants.SIZE_UNIT * height);
-        if (orientation === 'horizontal') labelElement.dx(_constants.SIZE_UNIT);
+        labelElement.dx(_constants.SIZE_UNIT * 2.5);
+        labelElement.dy(-_constants.SIZE_UNIT * height * 1.25);
         break;
       case 'left':
         labelElement.font({ anchor: 'end' });
         labelElement.dx(-_constants.SIZE_UNIT * 1.5);
-        labelElement.dy(-_constants.SIZE_UNIT * height);
+        labelElement.dy(-_constants.SIZE_UNIT * height * 1.25);
         if (orientation === 'horizontal') labelElement.dx(-_constants.SIZE_UNIT);
         break;
       case 'below':
@@ -6571,6 +6750,7 @@ var buildEndCap = function buildEndCap(group, point, color) {
         labelElement.font({ anchor: 'middle' });
         labelElement.dy(-_constants.SIZE_UNIT * 5);
         labelElement.dy(-height * _constants.SIZE_UNIT);
+        labelElement.dx(_constants.SIZE_UNIT);
         break;
       default:
         break;
@@ -6583,7 +6763,7 @@ var buildEndCap = function buildEndCap(group, point, color) {
 exports.default = buildEndCap;
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6613,10 +6793,10 @@ var buildStation = function buildStation(group, point) {
         _label$alignment = label.alignment,
         alignment = _label$alignment === undefined ? 'above' : _label$alignment;
 
-    var labelElement = group.text(text).move(x, y);
+    var labelElement = group.text(text).move(x, y).font(_constants.FONT);
     var leading = labelElement.leading().value;
     var lines = labelElement.lines().length();
-    var height = leading * lines + leading / 2;
+    var height = leading * lines;
 
     switch (alignment) {
       case 'right':
@@ -6636,7 +6816,7 @@ var buildStation = function buildStation(group, point) {
       case 'above-right':
         labelElement.font({ anchor: 'start' });
         labelElement.dx(_constants.SIZE_UNIT * 2.5);
-        labelElement.dy(-(height + (DIAMETER + _constants.SIZE_UNIT) * 2));
+        labelElement.dy(-(height + (DIAMETER + _constants.SIZE_UNIT) * 1.5));
         break;
       case 'above':
         labelElement.font({ anchor: 'middle' });
@@ -6653,7 +6833,7 @@ var buildStation = function buildStation(group, point) {
 exports.default = buildStation;
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6677,7 +6857,8 @@ var buildLine = function buildLine(group, _ref) {
   var rawPoints = _ref.points,
       _ref$offset = _ref.offset,
       offset = _ref$offset === undefined ? {} : _ref$offset,
-      color = _ref.color;
+      color = _ref.color,
+      dashed = _ref.dashed;
 
   var lineGroup = group.group();
   var points = rawPoints.map(function (p) {
@@ -6708,7 +6889,14 @@ var buildLine = function buildLine(group, _ref) {
     }
   });
 
-  lineGroup.path(linePoints.join(' ')).fill('none').stroke({ width: _constants.SIZE_UNIT, color: color }).back();
+  var line = lineGroup.path(linePoints.join(' ')).fill('none').stroke({ width: _constants.SIZE_UNIT, color: color });
+
+  if (dashed) {
+    lineGroup.path(linePoints.join(' ')).fill('none').stroke({ width: _constants.SIZE_UNIT / 3, color: 'white' }).back();
+    line.stroke({ dasharray: [_constants.SIZE_UNIT / 2, _constants.SIZE_UNIT / 2] });
+  }
+
+  line.back();
 
   var _offset$x = offset.x,
       x = _offset$x === undefined ? 0 : _offset$x,
@@ -6721,7 +6909,7 @@ var buildLine = function buildLine(group, _ref) {
 exports.default = buildLine;
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6737,89 +6925,160 @@ var _constants = __webpack_require__(0);
 
 var RADIUS = 2.5 * _constants.SIZE_UNIT;
 
-var buildWater = function buildWater(map, _ref) {
-  var shapes = _ref.shapes;
+var buildWater = function buildWater(map, rawPoints) {
+  var points = rawPoints.map(function (_ref) {
+    var _ref2 = _slicedToArray(_ref, 2),
+        x = _ref2[0],
+        y = _ref2[1];
 
-  var group = map.group();
-  var water = group.rect(10000, 10000).fill('#c6ebfc').center(0, 0);
-  var mask = group.mask().fill('grey').stroke({ width: _constants.SIZE_UNIT / 2, color: 'white' });
+    return [x * _constants.SIZE_UNIT, y * _constants.SIZE_UNIT];
+  });
+  var path = points.reduce(function (out, _ref3, index, arr) {
+    var _ref4 = _slicedToArray(_ref3, 2),
+        x = _ref4[0],
+        y = _ref4[1];
 
-  shapes.forEach(function (_ref2) {
-    var rawPoints = _ref2.points,
-        subtract = _ref2.subtract;
+    var _ref5 = arr[index - 1] || arr[arr.length - 1],
+        _ref6 = _slicedToArray(_ref5, 2),
+        previousX = _ref6[0],
+        previousY = _ref6[1];
 
-    var points = rawPoints.map(function (_ref3) {
-      var _ref4 = _slicedToArray(_ref3, 2),
-          x = _ref4[0],
-          y = _ref4[1];
+    var _ref7 = arr[index + 1] || arr[0],
+        _ref8 = _slicedToArray(_ref7, 2),
+        nextX = _ref8[0],
+        nextY = _ref8[1];
 
-      return [x * _constants.SIZE_UNIT, y * _constants.SIZE_UNIT];
-    });
-    var path = points.reduce(function (out, _ref5, index, arr) {
-      var _ref6 = _slicedToArray(_ref5, 2),
-          x = _ref6[0],
-          y = _ref6[1];
-
-      var _ref7 = arr[index - 1] || arr[arr.length - 1],
-          _ref8 = _slicedToArray(_ref7, 2),
-          previousX = _ref8[0],
-          previousY = _ref8[1];
-
-      var _ref9 = arr[index + 1] || arr[0],
-          _ref10 = _slicedToArray(_ref9, 2),
-          nextX = _ref10[0],
-          nextY = _ref10[1];
-
-      if (index === 0) {
-        out.push('M' + (x + RADIUS) + ' ' + y);
-        return out;
-      }
-
-      if (previousY === y && nextX === x) {
-        if (previousX < x) {
-          out.push('L' + (x - RADIUS) + ' ' + y);
-        } else {
-          out.push('L' + (x + RADIUS) + ' ' + y);
-        }
-
-        if (nextY < y) {
-          out.push('Q' + x + ' ' + y + ' ' + x + ' ' + (y - RADIUS));
-        } else {
-          out.push('Q' + x + ' ' + y + ' ' + x + ' ' + (y + RADIUS));
-        }
-      }
-
-      if (previousX === x && nextY === y) {
-        if (previousY < y) {
-          out.push('L' + x + ' ' + (y - RADIUS));
-        } else {
-          out.push('L' + x + ' ' + (y + RADIUS));
-        }
-
-        if (nextX < x) {
-          out.push('Q' + x + ' ' + y + ' ' + (x - RADIUS) + ' ' + y);
-        } else {
-          out.push('Q' + x + ' ' + y + ' ' + (x + RADIUS) + ' ' + y);
-        }
-      }
-
+    if (index === 0) {
+      out.push('M' + (x + RADIUS) + ' ' + y);
       return out;
-    }, []).join(' ');
-
-    var polygon = group.path(path);
-
-    if (subtract) {
-      polygon.fill('black');
     }
 
-    mask.add(polygon);
-  });
+    if (previousY === y && nextX === x) {
+      if (previousX < x) {
+        out.push('L' + (x - RADIUS) + ' ' + y);
+      } else {
+        out.push('L' + (x + RADIUS) + ' ' + y);
+      }
 
-  water.maskWith(mask);
+      if (nextY < y) {
+        out.push('Q' + x + ' ' + y + ' ' + x + ' ' + (y - RADIUS));
+      } else {
+        out.push('Q' + x + ' ' + y + ' ' + x + ' ' + (y + RADIUS));
+      }
+    }
+
+    if (previousX === x && nextY === y) {
+      if (previousY < y) {
+        out.push('L' + x + ' ' + (y - RADIUS));
+      } else {
+        out.push('L' + x + ' ' + (y + RADIUS));
+      }
+
+      if (nextX < x) {
+        out.push('Q' + x + ' ' + y + ' ' + (x - RADIUS) + ' ' + y);
+      } else {
+        out.push('Q' + x + ' ' + y + ' ' + (x + RADIUS) + ' ' + y);
+      }
+    }
+
+    return out;
+  }, []).join(' ');
+
+  map.path(path).fill('#c6ebfc').opacity(0.5);
 };
 
 exports.default = buildWater;
 
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _constants = __webpack_require__(0);
+
+var buildExtra = function buildExtra(map, extra) {
+  var x = extra.x,
+      y = extra.y,
+      type = extra.type;
+
+  var mapX = x * _constants.SIZE_UNIT;
+  var mapY = y * _constants.SIZE_UNIT;
+  var group = map.group();
+
+  if (type === 'rail-symbol') {
+    group.path('M1,-8.9 46,12.4 16,26.6 61,47.9').fill('none').stroke({ width: 6, color: '#ED1C24' });
+    group.path('M0,12.4H62m0,14.2H0').fill('none').stroke({ width: 6, color: '#ED1C24' });
+
+    var clip = group.clip().add(group.rect(62, 39));
+    group.clipWith(clip);
+
+    group.move(mapX, mapY);
+    group.scale(0.4);
+  }
+
+  if (type === 'station-join') {
+    var orientation = extra.orientation;
+
+    group.rect(_constants.SIZE_UNIT * 3, _constants.SIZE_UNIT * 2.5).dx(_constants.SIZE_UNIT);
+    group.rect(_constants.SIZE_UNIT * 5, _constants.SIZE_UNIT).dy(_constants.SIZE_UNIT * 0.75).fill('white');
+
+    group.center(mapX, mapY);
+
+    if (orientation === 'vertical') {
+      group.rotate(90);
+    }
+  }
+
+  if (type === 'label') {
+    var text = extra.text;
+
+    group.text(text).font(_constants.FONT).font({ anchor: 'middle' }).center(mapX, mapY);
+  }
+};
+
+exports.default = buildExtra;
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _constants = __webpack_require__(0);
+
+var buildLegend = function buildLegend(svg, legend) {
+  var group = svg.group();
+
+  legend.forEach(function (_ref, index) {
+    var name = _ref.name,
+        color = _ref.color;
+
+    var entry = group.group();
+    var dy = index % 3 * _constants.SIZE_UNIT * 3;
+    var dx = Math.floor(index / 3) * _constants.SIZE_UNIT * 20;
+    var length = _constants.SIZE_UNIT * 5;
+
+    entry.line(0, 0, length, 0).stroke({ width: _constants.SIZE_UNIT, color: color }).dy(dy).dx(dx);
+
+    entry.text(name).font(_constants.FONT).dy(dy - _constants.SIZE_UNIT * 2.5).dx(length + _constants.SIZE_UNIT).dx(dx);
+  });
+
+  group.move(110 * _constants.SIZE_UNIT, 105 * _constants.SIZE_UNIT);
+};
+
+exports.default = buildLegend;
+
 /***/ })
 /******/ ]);
-//# sourceMappingURL=main.c1cac04d.js.map
+//# sourceMappingURL=main.d001d926.js.map
