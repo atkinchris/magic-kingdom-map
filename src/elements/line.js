@@ -1,7 +1,7 @@
 import { SIZE_UNIT } from '../constants'
 import buildElement from './'
 
-const buildLine = (group, { points: rawPoints, offset = {}, color }) => {
+const buildLine = (group, { points: rawPoints, offset = {}, color, dashed }) => {
   const lineGroup = group.group()
   const points = rawPoints.map(p => ({
     ...p,
@@ -27,11 +27,17 @@ const buildLine = (group, { points: rawPoints, offset = {}, color }) => {
     }
   })
 
-  lineGroup
+  const line = lineGroup
     .path(linePoints.join(' '))
     .fill('none')
     .stroke({ width: SIZE_UNIT, color })
-    .back()
+
+  if (dashed) {
+    lineGroup.path(linePoints.join(' ')).fill('none').stroke({ width: SIZE_UNIT / 3, color: 'white' }).back()
+    line.stroke({ dasharray: [SIZE_UNIT / 2, SIZE_UNIT / 2] })
+  }
+
+  line.back()
 
   const { x = 0, y = 0 } = offset
   lineGroup.dmove(x * SIZE_UNIT, y * SIZE_UNIT)

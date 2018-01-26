@@ -239,7 +239,7 @@ export default [{
   }, {
     type: 'endcap',
     x: -5,
-    y: -10,
+    y: -15,
     label: {
       text: 'Haunted Mansion',
       alignment: 'right',
@@ -262,23 +262,19 @@ export default [{
     type: 'station',
     x: -40,
     y: 20,
-    label: {
-      text: 'WDW\nRailroad',
-      alignment: 'left',
-    },
   }, {
     type: 'stop',
     x: -40,
     y: 12,
-    orientation: 'left',
+    orientation: 'right',
     label: {
       text: 'Splash\nMountain',
-      alignment: 'left',
+      alignment: 'right',
     },
   }, {
     type: 'stop',
     x: -40,
-    y: 10,
+    y: 5,
     label: {
       text: 'Tom Sawyer\nRafts',
       alignment: 'right',
@@ -615,5 +611,97 @@ export default [{
       text: 'it\'s a small world',
       alignment: 'left',
     },
+  }],
+}, {
+  color: '#939ba1',
+  dashed: true,
+  points: [{
+    type: 'point',
+    x: 30,
+    y: 55,
+  }, {
+    type: 'point',
+    x: 15,
+    y: 55,
+  }, {
+    type: 'corner',
+    x: 10,
+    y: 55,
+  }, {
+    type: 'point',
+    x: 10,
+    y: 60,
+  }, {
+    type: 'corner',
+    x: 10,
+    y: 65,
+  }, {
+    type: 'point',
+    x: 5,
+    y: 65,
+  }, {
+    type: 'point',
+    x: -40,
+    y: 65,
+  }, {
+    type: 'corner',
+    x: -45,
+    y: 65,
+  }, {
+    type: 'point',
+    x: -45,
+    y: 60,
+  }, {
+    type: 'station',
+    x: -45,
+    y: 20,
+    label: {
+      text: 'WDW\nRailroad',
+      alignment: 'left',
+    },
+  }, {
+    type: 'point',
+    x: -45,
+    y: -35,
+  }, {
+    type: 'corner',
+    x: -45,
+    y: -40,
+  }, {
+    type: 'point',
+    x: -40,
+    y: -40,
+  }, {
+    type: 'point',
+    x: 90,
+    y: -40,
+  }, {
+    type: 'corner',
+    x: 95,
+    y: -40,
+  }, {
+    type: 'point',
+    x: 95,
+    y: -35,
+  }, {
+    type: 'point',
+    x: 95,
+    y: -25,
+  }, {
+    type: 'point',
+    x: 95,
+    y: 50,
+  }, {
+    type: 'corner',
+    x: 95,
+    y: 55,
+  }, {
+    type: 'point',
+    x: 90,
+    y: 55,
+  }, {
+    type: 'point',
+    x: 30,
+    y: 55,
   }],
 }]

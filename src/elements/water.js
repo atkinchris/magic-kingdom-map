@@ -5,7 +5,7 @@ const RADIUS = 2.5 * SIZE_UNIT
 const buildWater = (map, { shapes }) => {
   const group = map.group()
   const water = group.rect(10000, 10000).fill('#c6ebfc').center(0, 0)
-  const mask = group.mask().fill('grey').stroke({ width: SIZE_UNIT / 2, color: 'white' })
+  const mask = group.mask().fill('grey').stroke({ width: SIZE_UNIT / 3, color: 'white' })
 
   shapes.forEach(({ points: rawPoints, subtract }) => {
     const points = rawPoints.map(([x, y]) => [x * SIZE_UNIT, y * SIZE_UNIT])
