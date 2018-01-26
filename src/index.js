@@ -1,7 +1,7 @@
 import SVG from 'svg.js'
 
 import { lines, water, extras } from './data'
-import { buildLine, buildWater, buildExtra, buildLegend } from './elements'
+import { buildLine, buildWater, buildExtra, buildLegend, buildSaveButton } from './elements'
 import { SIZE_UNIT } from './constants'
 
 const svg = SVG('map')
@@ -33,4 +33,4 @@ svg.size(width, height)
 map.dmove(-bounds.left * SIZE_UNIT, -bounds.top * SIZE_UNIT)
 map.dmove(SIZE_UNIT * 10, SIZE_UNIT * 6)
 
-console.log(svg.svg())
+buildSaveButton(svg)

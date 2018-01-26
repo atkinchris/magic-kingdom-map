@@ -5,6 +5,7 @@ import buildLine from './line'
 import buildWater from './water'
 import buildExtra from './extra'
 import buildLegend from './legend'
+import buildSaveButton from './saveButton'
 
 const buildElement = (group, element, color) => {
   const { type } = element
@@ -30,4 +31,5 @@ export {
   buildWater,
   buildExtra,
   buildLegend,
+  buildSaveButton,
 }
