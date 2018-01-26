@@ -3,7 +3,7 @@ import buildEndCap from './endCap'
 import buildStation from './station'
 import buildLine from './line'
 import buildWater from './water'
-import buildSymbol from './symbol'
+import buildExtra from './extra'
 import buildLegend from './legend'
 
 const buildElement = (group, element, color) => {
@@ -28,6 +28,6 @@ export {
   buildStation,
   buildLine,
   buildWater,
-  buildSymbol,
+  buildExtra,
   buildLegend,
 }

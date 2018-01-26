@@ -1,7 +1,7 @@
 import SVG from 'svg.js'
 
-import { lines, water, symbols } from './data'
-import { buildLine, buildWater, buildSymbol, buildLegend } from './elements'
+import { lines, water, extras } from './data'
+import { buildLine, buildWater, buildExtra, buildLegend } from './elements'
 import { SIZE_UNIT } from './constants'
 
 const svg = SVG('map')
@@ -22,7 +22,7 @@ const bounds = allPoints.reduce((out, { x, y }) => {
 
 water.forEach(w => buildWater(map, w))
 lines.reverse().forEach(line => buildLine(map, line))
-symbols.forEach(s => buildSymbol(map, s))
+extras.forEach(extra => buildExtra(map, extra))
 
 buildLegend(svg, legend)
 
