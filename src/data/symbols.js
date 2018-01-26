@@ -13,5 +13,11 @@ export default [{
 }, {
   x: -42.5,
   y: 20,
+  orientation: 'horizontal',
+  symbol: 'station-join',
+}, {
+  x: 30,
+  y: 7.5,
+  orientation: 'vertical',
   symbol: 'station-join',
 }]

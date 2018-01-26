@@ -1,6 +1,6 @@
 import { SIZE_UNIT } from '../constants'
 
-const buildSymbol = (map, { x, y, symbol }) => {
+const buildSymbol = (map, { x, y, symbol, orientation }) => {
   const mapX = x * SIZE_UNIT
   const mapY = y * SIZE_UNIT
   const group = map.group()
@@ -21,6 +21,10 @@ const buildSymbol = (map, { x, y, symbol }) => {
     group.rect(SIZE_UNIT * 5, SIZE_UNIT).dy(SIZE_UNIT * 0.75).fill('white')
 
     group.center(mapX, mapY)
+
+    if (orientation === 'vertical') {
+      group.rotate(90)
+    }
   }
 }
 

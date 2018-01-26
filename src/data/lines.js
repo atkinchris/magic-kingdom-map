@@ -415,6 +415,10 @@ export default [{
     x: 30,
     y: 10,
   }, {
+    type: 'station',
+    x: 30,
+    y: 5,
+  }, {
     type: 'stop',
     x: 30,
     y: -5,
