@@ -38,6 +38,7 @@ const buildEndCap = (group, point, color) => {
         labelElement.font({ anchor: 'middle' })
         labelElement.dy(-SIZE_UNIT * 5)
         labelElement.dy(-height * SIZE_UNIT)
+        labelElement.dx(SIZE_UNIT)
         break
       default:
         break
