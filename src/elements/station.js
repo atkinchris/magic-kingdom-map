@@ -1,4 +1,4 @@
-import { SIZE_UNIT } from '../constants'
+import { SIZE_UNIT, FONT } from '../constants'
 
 const DIAMETER = SIZE_UNIT * 3
 
@@ -12,7 +12,7 @@ const buildStation = (group, point) => {
 
   if (label && label.text) {
     const { text, alignment = 'above' } = label
-    const labelElement = group.text(text).move(x, y)
+    const labelElement = group.text(text).move(x, y).font(FONT)
     const leading = labelElement.leading().value
     const lines = labelElement.lines().length()
     const height = (leading * lines) + (leading / 2)

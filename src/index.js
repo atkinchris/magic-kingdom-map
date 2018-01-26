@@ -28,4 +28,6 @@ const height = ((-bounds.top + bounds.bottom) * SIZE_UNIT) + (SIZE_UNIT * 20)
 
 svg.size(width, height)
 map.dmove(-bounds.left * SIZE_UNIT, -bounds.top * SIZE_UNIT)
-map.dmove(SIZE_UNIT * 12, SIZE_UNIT * 12)
+map.dmove(SIZE_UNIT * 9, SIZE_UNIT * 5)
+
+console.log(svg.svg())

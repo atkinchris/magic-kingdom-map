@@ -1,4 +1,4 @@
-import { SIZE_UNIT } from '../constants'
+import { SIZE_UNIT, FONT } from '../constants'
 
 const buildStop = (group, point, color) => {
   const { x, y, orientation = 'right', label } = point
@@ -25,7 +25,7 @@ const buildStop = (group, point, color) => {
 
   if (label && label.text) {
     const { text, alignment } = label
-    const labelElement = group.text(text).move(x, y)
+    const labelElement = group.text(text).move(x, y).font(FONT)
     const leading = labelElement.leading().value
     const lines = labelElement.lines().length()
     const height = (leading * lines) + (leading / 2)
