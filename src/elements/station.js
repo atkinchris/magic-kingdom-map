@@ -15,7 +15,7 @@ const buildStation = (group, point) => {
     const labelElement = group.text(text).move(x, y).font(FONT)
     const leading = labelElement.leading().value
     const lines = labelElement.lines().length()
-    const height = (leading * lines) + (leading / 2)
+    const height = leading * lines
 
     switch (alignment) {
       case 'right':

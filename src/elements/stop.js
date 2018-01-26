@@ -28,27 +28,29 @@ const buildStop = (group, point, color) => {
     const labelElement = group.text(text).move(x, y).font(FONT)
     const leading = labelElement.leading().value
     const lines = labelElement.lines().length()
-    const height = (leading * lines) + (leading / 2)
+    const height = leading * lines
 
     switch (alignment) {
       case 'right':
         labelElement.font({ anchor: 'start' })
         labelElement.dx(SIZE_UNIT * 2.5)
-        labelElement.dy(-SIZE_UNIT * height * 0.9)
+        labelElement.dy(-SIZE_UNIT * height)
         break
       case 'left':
         labelElement.font({ anchor: 'end' })
         labelElement.dx(-SIZE_UNIT * 2.5)
-        labelElement.dy(-SIZE_UNIT * height * 0.9)
+        labelElement.dy(-SIZE_UNIT * height)
         break
       case 'below':
         labelElement.font({ anchor: 'middle' })
+        labelElement.dx(-SIZE_UNIT / 2)
         labelElement.dy(SIZE_UNIT * 2)
         break
       case 'above':
         labelElement.font({ anchor: 'middle' })
+        labelElement.dx(-SIZE_UNIT / 2)
         labelElement.dy(-SIZE_UNIT * 5)
-        labelElement.dy(-height * SIZE_UNIT * 1.25)
+        labelElement.dy(-height * SIZE_UNIT * 1.2)
         break
       default:
         break

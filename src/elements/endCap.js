@@ -16,19 +16,18 @@ const buildEndCap = (group, point, color) => {
     const labelElement = group.text(text).move(x, y).font(FONT)
     const leading = labelElement.leading().value
     const lines = labelElement.lines().length()
-    const height = (leading * lines) + (leading / 2)
+    const height = leading * lines
 
     switch (alignment) {
       case 'right':
         labelElement.font({ anchor: 'start' })
-        labelElement.dx(SIZE_UNIT * 1.5)
-        labelElement.dy(-SIZE_UNIT * height)
-        if (orientation === 'horizontal') labelElement.dx(SIZE_UNIT)
+        labelElement.dx(SIZE_UNIT * 2.5)
+        labelElement.dy(-SIZE_UNIT * height * 1.25)
         break
       case 'left':
         labelElement.font({ anchor: 'end' })
         labelElement.dx(-SIZE_UNIT * 1.5)
-        labelElement.dy(-SIZE_UNIT * height)
+        labelElement.dy(-SIZE_UNIT * height * 1.25)
         if (orientation === 'horizontal') labelElement.dx(-SIZE_UNIT)
         break
       case 'below':
