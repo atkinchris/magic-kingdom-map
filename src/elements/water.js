@@ -1,6 +1,6 @@
 import { SIZE_UNIT } from '../constants'
 
-const RADIUS = 2 * SIZE_UNIT
+const RADIUS = 2.5 * SIZE_UNIT
 
 const buildWater = (map, { shapes }) => {
   const group = map.group()
@@ -10,47 +10,40 @@ const buildWater = (map, { shapes }) => {
   shapes.forEach(({ points: rawPoints, subtract }) => {
     const points = rawPoints.map(([x, y]) => [x * SIZE_UNIT, y * SIZE_UNIT])
     const path = points.reduce((out, [x, y], index, arr) => {
-      const [pX, pY] = arr[index - 1] || arr[arr.length - 1]
-      const [nX, nY] = arr[index + 1] || arr[0]
+      const [previousX, previousY] = arr[index - 1] || arr[arr.length - 1]
+      const [nextX, nextY] = arr[index + 1] || arr[0]
 
       if (index === 0) {
         out.push(`M${x + RADIUS} ${y}`)
+        return out
       }
 
-      if (pX < x) {
-        out.push(`L${x - RADIUS} ${y}`)
+      if (previousY === y && nextX === x) {
+        if (previousX < x) {
+          out.push(`L${x - RADIUS} ${y}`)
+        } else {
+          out.push(`L${x + RADIUS} ${y}`)
+        }
+
+        if (nextY < y) {
+          out.push(`Q${x} ${y} ${x} ${y - RADIUS}`)
+        } else {
+          out.push(`Q${x} ${y} ${x} ${y + RADIUS}`)
+        }
       }
 
-      if (pX > x) {
-        out.push(`L${x + RADIUS} ${y}`)
-      }
+      if (previousX === x && nextY === y) {
+        if (previousY < y) {
+          out.push(`L${x} ${y - RADIUS}`)
+        } else {
+          out.push(`L${x} ${y + RADIUS}`)
+        }
 
-      if (pY < y) {
-        out.push(`L${x} ${y - RADIUS}`)
-      }
-
-      if (pY > y) {
-        out.push(`L${x} ${y + RADIUS}`)
-      }
-
-      if (nY > y) {
-        out.push(`L${x} ${y + RADIUS}`)
-      }
-
-      if (nY < y) {
-        out.push(`L${x} ${y - RADIUS}`)
-      }
-
-      if (nX > x) {
-        out.push(`L${x + RADIUS} ${y}`)
-      }
-
-      if (nX < x) {
-        out.push(`L${x - RADIUS} ${y}`)
-      }
-
-      if (index === arr.length - 1) {
-        out.push(`L${x + RADIUS} ${y}`)
+        if (nextX < x) {
+          out.push(`Q${x} ${y} ${x - RADIUS} ${y}`)
+        } else {
+          out.push(`Q${x} ${y} ${x + RADIUS} ${y}`)
+        }
       }
 
       return out
