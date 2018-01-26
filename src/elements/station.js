@@ -35,7 +35,7 @@ const buildStation = (group, point) => {
       case 'above-right':
         labelElement.font({ anchor: 'start' })
         labelElement.dx(SIZE_UNIT * 2.5)
-        labelElement.dy(-(height + ((DIAMETER + SIZE_UNIT) * 2)))
+        labelElement.dy(-(height + ((DIAMETER + SIZE_UNIT) * 1.5)))
         break
       case 'above':
         labelElement.font({ anchor: 'middle' })
