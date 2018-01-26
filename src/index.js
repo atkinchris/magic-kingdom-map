@@ -1,7 +1,7 @@
 import SVG from 'svg.js'
 
-import lines from './data'
-import { buildLine } from './elements'
+import { lines, water } from './data'
+import { buildLine, buildWater } from './elements'
 import { SIZE_UNIT } from './constants'
 
 const svg = SVG('map')
@@ -19,6 +19,7 @@ const bounds = allPoints.reduce((out, { x, y }) => {
   return out
 }, { left: 0, right: 0, top: 0, bottom: 0 })
 
+water.forEach(w => buildWater(map, w))
 lines.reverse().forEach(line => buildLine(map, line))
 
 const width = ((-bounds.left + bounds.right) * SIZE_UNIT) + (SIZE_UNIT * 25)
