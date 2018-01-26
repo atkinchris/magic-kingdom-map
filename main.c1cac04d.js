@@ -87,23 +87,27 @@ var SIZE_UNIT = exports.SIZE_UNIT = 8;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.buildLine = exports.buildStation = exports.buildEndCap = exports.buildStop = undefined;
+exports.buildWater = exports.buildLine = exports.buildStation = exports.buildEndCap = exports.buildStop = undefined;
 
-var _stop = __webpack_require__(5);
+var _stop = __webpack_require__(7);
 
 var _stop2 = _interopRequireDefault(_stop);
 
-var _endCap = __webpack_require__(6);
+var _endCap = __webpack_require__(8);
 
 var _endCap2 = _interopRequireDefault(_endCap);
 
-var _station = __webpack_require__(7);
+var _station = __webpack_require__(9);
 
 var _station2 = _interopRequireDefault(_station);
 
-var _line = __webpack_require__(8);
+var _line = __webpack_require__(10);
 
 var _line2 = _interopRequireDefault(_line);
+
+var _water = __webpack_require__(11);
+
+var _water2 = _interopRequireDefault(_water);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -128,6 +132,7 @@ exports.buildStop = _stop2.default;
 exports.buildEndCap = _endCap2.default;
 exports.buildStation = _station2.default;
 exports.buildLine = _line2.default;
+exports.buildWater = _water2.default;
 
 /***/ }),
 /* 2 */
@@ -142,8 +147,6 @@ var _svg2 = _interopRequireDefault(_svg);
 
 var _data = __webpack_require__(4);
 
-var _data2 = _interopRequireDefault(_data);
-
 var _elements = __webpack_require__(1);
 
 var _constants = __webpack_require__(0);
@@ -155,7 +158,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 var svg = (0, _svg2.default)('map');
 var map = svg.group();
 
-var allPoints = _data2.default.reduce(function (out, _ref) {
+var allPoints = _data.lines.reduce(function (out, _ref) {
   var points = _ref.points;
   return [].concat(_toConsumableArray(out), _toConsumableArray(points));
 }, []);
@@ -173,7 +176,10 @@ var bounds = allPoints.reduce(function (out, _ref2) {
   return out;
 }, { left: 0, right: 0, top: 0, bottom: 0 });
 
-_data2.default.reverse().forEach(function (line) {
+_data.water.forEach(function (w) {
+  return (0, _elements.buildWater)(map, w);
+});
+_data.lines.reverse().forEach(function (line) {
   return (0, _elements.buildLine)(map, line);
 });
 
@@ -182,7 +188,7 @@ var height = (-bounds.top + bounds.bottom) * _constants.SIZE_UNIT + _constants.S
 
 svg.size(width, height);
 map.dmove(-bounds.left * _constants.SIZE_UNIT, -bounds.top * _constants.SIZE_UNIT);
-map.dmove(_constants.SIZE_UNIT * 12, _constants.SIZE_UNIT * 10);
+map.dmove(_constants.SIZE_UNIT * 12, _constants.SIZE_UNIT * 12);
 
 /***/ }),
 /* 3 */
@@ -5752,9 +5758,40 @@ return SVG
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _lines = __webpack_require__(5);
+
+Object.defineProperty(exports, 'lines', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_lines).default;
+  }
+});
+
+var _water = __webpack_require__(6);
+
+Object.defineProperty(exports, 'water', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_water).default;
+  }
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = [{
   name: 'Main Street, USA',
-  color: '#ee2f25',
+  color: '#f02a0f',
   points: [{
     type: 'station',
     x: 30,
@@ -5766,7 +5803,7 @@ exports.default = [{
   }, {
     type: 'stop',
     x: 30,
-    y: 30,
+    y: 32,
     orientation: 'left',
     label: {
       text: 'Crystal Palace',
@@ -5828,7 +5865,7 @@ exports.default = [{
   }]
 }, {
   name: 'Tomorrowland',
-  color: '#1d3f95',
+  color: '#193f96',
   points: [{
     type: 'point',
     x: 30,
@@ -5950,7 +5987,7 @@ exports.default = [{
   }]
 }, {
   name: 'Liberty Square',
-  color: '#029ddd',
+  color: '#009edf',
   points: [{
     type: 'point',
     x: 30,
@@ -6001,7 +6038,7 @@ exports.default = [{
   }]
 }, {
   name: 'Frontierland',
-  color: '#af6110',
+  color: '#b15e00',
   points: [{
     type: 'stop',
     x: -20,
@@ -6023,10 +6060,11 @@ exports.default = [{
   }, {
     type: 'stop',
     x: -40,
-    y: 15,
+    y: 12,
+    orientation: 'left',
     label: {
-      text: 'Splash Mountain',
-      alignment: 'right'
+      text: 'Splash\nMountain',
+      alignment: 'left'
     }
   }, {
     type: 'stop',
@@ -6041,13 +6079,13 @@ exports.default = [{
     x: -40,
     y: 0,
     label: {
-      text: 'Big Thunder Mountain',
-      alignment: 'right'
+      text: 'Big Thunder\nMountain',
+      alignment: 'above'
     }
   }]
 }, {
   name: 'Adventureland',
-  color: '#00853e',
+  color: '#00853d',
   offset: {
     y: 1,
     x: 0
@@ -6160,13 +6198,13 @@ exports.default = [{
     x: -5,
     y: 32,
     label: {
-      text: 'Swiss Family\nTreehouse',
-      alignment: 'right'
+      text: 'Swiss Family Treehouse',
+      alignment: 'left'
     }
   }]
 }, {
   name: 'Fantasyland',
-  color: '#ffd203',
+  color: '#ffd200',
   points: [{
     type: 'point',
     x: 30,
@@ -6372,7 +6410,30 @@ exports.default = [{
 }];
 
 /***/ }),
-/* 5 */
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = [{
+  shapes: [{
+    points: [[-33, -35], [-12, -35], [-12, 15], [-33, 15], [-33, -10], [-50, -10], [-50, -17], [-33, -17], [-33, -35]]
+  }, {
+    subtract: true,
+    points: [[-26, -29], [-19, -29], [-19, 9], [-26, 9], [-26, -29]]
+  }]
+}, {
+  shapes: [{
+    points: [[-45, 55], [0, 55], [0, 25], [20, 25], [20, 0], [41, 0], [41, 20], [36, 20], [36, 16], [36, 5], [25, 5], [25, 30], [5, 30], [5, 60], [-45, 60], [-45, 55]]
+  }]
+}];
+
+/***/ }),
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6452,7 +6513,7 @@ var buildStop = function buildStop(group, point, color) {
 exports.default = buildStop;
 
 /***/ }),
-/* 6 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6509,7 +6570,7 @@ var buildEndCap = function buildEndCap(group, point, color) {
       case 'above':
         labelElement.font({ anchor: 'middle' });
         labelElement.dy(-_constants.SIZE_UNIT * 5);
-        labelElement.dy(-height * _constants.SIZE_UNIT * 1.5);
+        labelElement.dy(-height * _constants.SIZE_UNIT);
         break;
       default:
         break;
@@ -6522,7 +6583,7 @@ var buildEndCap = function buildEndCap(group, point, color) {
 exports.default = buildEndCap;
 
 /***/ }),
-/* 7 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6592,7 +6653,7 @@ var buildStation = function buildStation(group, point) {
 exports.default = buildStation;
 
 /***/ }),
-/* 8 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6659,6 +6720,106 @@ var buildLine = function buildLine(group, _ref) {
 
 exports.default = buildLine;
 
+/***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _constants = __webpack_require__(0);
+
+var RADIUS = 2.5 * _constants.SIZE_UNIT;
+
+var buildWater = function buildWater(map, _ref) {
+  var shapes = _ref.shapes;
+
+  var group = map.group();
+  var water = group.rect(10000, 10000).fill('#c6ebfc').center(0, 0);
+  var mask = group.mask().fill('grey').stroke({ width: _constants.SIZE_UNIT / 2, color: 'white' });
+
+  shapes.forEach(function (_ref2) {
+    var rawPoints = _ref2.points,
+        subtract = _ref2.subtract;
+
+    var points = rawPoints.map(function (_ref3) {
+      var _ref4 = _slicedToArray(_ref3, 2),
+          x = _ref4[0],
+          y = _ref4[1];
+
+      return [x * _constants.SIZE_UNIT, y * _constants.SIZE_UNIT];
+    });
+    var path = points.reduce(function (out, _ref5, index, arr) {
+      var _ref6 = _slicedToArray(_ref5, 2),
+          x = _ref6[0],
+          y = _ref6[1];
+
+      var _ref7 = arr[index - 1] || arr[arr.length - 1],
+          _ref8 = _slicedToArray(_ref7, 2),
+          previousX = _ref8[0],
+          previousY = _ref8[1];
+
+      var _ref9 = arr[index + 1] || arr[0],
+          _ref10 = _slicedToArray(_ref9, 2),
+          nextX = _ref10[0],
+          nextY = _ref10[1];
+
+      if (index === 0) {
+        out.push('M' + (x + RADIUS) + ' ' + y);
+        return out;
+      }
+
+      if (previousY === y && nextX === x) {
+        if (previousX < x) {
+          out.push('L' + (x - RADIUS) + ' ' + y);
+        } else {
+          out.push('L' + (x + RADIUS) + ' ' + y);
+        }
+
+        if (nextY < y) {
+          out.push('Q' + x + ' ' + y + ' ' + x + ' ' + (y - RADIUS));
+        } else {
+          out.push('Q' + x + ' ' + y + ' ' + x + ' ' + (y + RADIUS));
+        }
+      }
+
+      if (previousX === x && nextY === y) {
+        if (previousY < y) {
+          out.push('L' + x + ' ' + (y - RADIUS));
+        } else {
+          out.push('L' + x + ' ' + (y + RADIUS));
+        }
+
+        if (nextX < x) {
+          out.push('Q' + x + ' ' + y + ' ' + (x - RADIUS) + ' ' + y);
+        } else {
+          out.push('Q' + x + ' ' + y + ' ' + (x + RADIUS) + ' ' + y);
+        }
+      }
+
+      return out;
+    }, []).join(' ');
+
+    var polygon = group.path(path);
+
+    if (subtract) {
+      polygon.fill('black');
+    }
+
+    mask.add(polygon);
+  });
+
+  water.maskWith(mask);
+};
+
+exports.default = buildWater;
+
 /***/ })
 /******/ ]);
-//# sourceMappingURL=main.f70f8288.js.map
+//# sourceMappingURL=main.c1cac04d.js.map
