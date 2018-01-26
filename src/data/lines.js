@@ -12,7 +12,7 @@ export default [{
   }, {
     type: 'stop',
     x: 30,
-    y: 30,
+    y: 32,
     orientation: 'left',
     label: {
       text: 'Crystal Palace',
@@ -269,10 +269,11 @@ export default [{
   }, {
     type: 'stop',
     x: -40,
-    y: 15,
+    y: 12,
+    orientation: 'left',
     label: {
-      text: 'Splash Mountain',
-      alignment: 'right',
+      text: 'Splash\nMountain',
+      alignment: 'left',
     },
   }, {
     type: 'stop',
@@ -287,8 +288,8 @@ export default [{
     x: -40,
     y: 0,
     label: {
-      text: 'Big Thunder Mountain',
-      alignment: 'right',
+      text: 'Big Thunder\nMountain',
+      alignment: 'above',
     },
   }],
 }, {
@@ -406,8 +407,8 @@ export default [{
     x: -5,
     y: 32,
     label: {
-      text: 'Swiss Family\nTreehouse',
-      alignment: 'right',
+      text: 'Swiss Family Treehouse',
+      alignment: 'left',
     },
   }],
 }, {
