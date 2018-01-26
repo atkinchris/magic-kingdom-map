@@ -4,6 +4,7 @@ import buildStation from './station'
 import buildLine from './line'
 import buildWater from './water'
 import buildSymbol from './symbol'
+import buildLegend from './legend'
 
 const buildElement = (group, element, color) => {
   const { type } = element
@@ -28,4 +29,5 @@ export {
   buildLine,
   buildWater,
   buildSymbol,
+  buildLegend,
 }

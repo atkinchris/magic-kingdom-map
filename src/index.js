@@ -1,12 +1,13 @@
 import SVG from 'svg.js'
 
 import { lines, water, symbols } from './data'
-import { buildLine, buildWater, buildSymbol } from './elements'
+import { buildLine, buildWater, buildSymbol, buildLegend } from './elements'
 import { SIZE_UNIT } from './constants'
 
 const svg = SVG('map')
 const map = svg.group()
 
+const legend = lines.filter(line => line.name).map(({ name, color }) => ({ name, color }))
 const allPoints = lines.reduce((out, { points }) => [...out, ...points], [])
 const bounds = allPoints.reduce((out, { x, y }) => {
   /* eslint-disable no-param-reassign */
@@ -22,6 +23,8 @@ const bounds = allPoints.reduce((out, { x, y }) => {
 water.forEach(w => buildWater(map, w))
 lines.reverse().forEach(line => buildLine(map, line))
 symbols.forEach(s => buildSymbol(map, s))
+
+buildLegend(svg, legend)
 
 const width = ((-bounds.left + bounds.right) * SIZE_UNIT) + (SIZE_UNIT * 25)
 const height = ((-bounds.top + bounds.bottom) * SIZE_UNIT) + (SIZE_UNIT * 20)
