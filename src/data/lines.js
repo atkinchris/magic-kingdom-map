@@ -24,7 +24,7 @@ export default [{
     y: 40,
     orientation: 'left',
     label: {
-      text: 'Casey\'s Corner',
+      text: "Casey's Corner",
       alignment: 'left',
     },
   }, {
@@ -128,7 +128,7 @@ export default [{
     y: 20,
     orientation: 'up',
     label: {
-      text: 'Astro Orbit\nPeople Mover',
+      text: 'Astro Orbiter\nPeople Mover',
       alignment: 'above',
     },
   }, {
@@ -167,7 +167,7 @@ export default [{
     y: -5,
     orientation: 'horizontal',
     label: {
-      text: 'Cosmic Starlight Cafe',
+      text: "Cosmic Ray's Starlight Café",
       alignment: 'left',
     },
   }],
@@ -195,16 +195,26 @@ export default [{
     },
   }],
 }, {
+  points: [{
+    type: 'station',
+    x: -5,
+    y: 10,
+    label: {
+      text: 'Liberty Square\nRiverboat',
+      alignment: 'left',
+    },
+  }],
+}, {
   name: 'Liberty Square',
   color: '#009edf',
   points: [{
     type: 'point',
     x: 30,
-    y: 10,
+    y: 9.5,
   }, {
     type: 'stop',
     x: 17,
-    y: 10,
+    y: 9.5,
     orientation: 'up',
     label: {
       text: 'Hall of\nPresidents',
@@ -213,7 +223,7 @@ export default [{
   }, {
     type: 'stop',
     x: 11,
-    y: 10,
+    y: 9.5,
     orientation: 'down',
     label: {
       text: 'Christmas\nShoppe',
@@ -222,20 +232,16 @@ export default [{
   }, {
     type: 'stop',
     x: 5,
-    y: 10,
+    y: 9.5,
     orientation: 'up',
     label: {
       text: 'Liberty Tree\nTavern',
       alignment: 'above',
     },
   }, {
-    type: 'station',
+    type: 'point',
     x: -5,
-    y: 10,
-    label: {
-      text: 'Liberty Square\nRiverboat',
-      alignment: 'left',
-    },
+    y: 9.5,
   }, {
     type: 'endcap',
     x: -5,
@@ -246,26 +252,32 @@ export default [{
     },
   }],
 }, {
+  points: [{
+    type: 'station',
+    x: -40,
+    y: 20,
+  }],
+}, {
   name: 'Frontierland',
   color: '#b15e00',
   points: [{
     type: 'stop',
     x: -20,
-    y: 20,
+    y: 19.5,
     orientation: 'down',
   }, {
     type: 'stop',
     x: -30,
-    y: 20,
+    y: 19.5,
     orientation: 'down',
   }, {
-    type: 'station',
+    type: 'point',
     x: -40,
-    y: 20,
+    y: 19.5,
   }, {
     type: 'stop',
     x: -40,
-    y: 12,
+    y: 15,
     orientation: 'right',
     label: {
       text: 'Splash\nMountain',
@@ -274,7 +286,7 @@ export default [{
   }, {
     type: 'stop',
     x: -40,
-    y: 5,
+    y: 8,
     label: {
       text: 'Tom Sawyer\nRafts',
       alignment: 'right',
@@ -298,16 +310,16 @@ export default [{
   points: [{
     type: 'point',
     x: 30,
-    y: 10,
+    y: 9.5,
   }, {
     type: 'stop',
     x: 11,
-    y: 10,
+    y: 9.5,
     orientation: 'down',
   }, {
     type: 'point',
     x: -5,
-    y: 10,
+    y: 9.5,
   }, {
     type: 'point',
     x: -5,
@@ -315,15 +327,15 @@ export default [{
   }, {
     type: 'corner',
     x: -5,
-    y: 20,
+    y: 19.5,
   }, {
     type: 'point',
     x: -10,
-    y: 20,
+    y: 19.5,
   }, {
     type: 'stop',
     x: -20,
-    y: 20,
+    y: 19.5,
     orientation: 'down',
     label: {
       text: 'Country Bear\nJamboree',
@@ -332,16 +344,16 @@ export default [{
   }, {
     type: 'stop',
     x: -30,
-    y: 20,
+    y: 19.5,
     orientation: 'down',
     label: {
-      text: 'Pecos\nBill',
+      text: 'Pecos Bill\nTall Tale Inn',
       alignment: 'below',
     },
   }, {
     type: 'point',
     x: -40,
-    y: 20,
+    y: 19.5,
   }, {
     type: 'point',
     x: -40,
@@ -370,7 +382,16 @@ export default [{
     },
   }, {
     type: 'stop',
-    x: -20,
+    x: -23,
+    y: 45,
+    orientation: 'down',
+    label: {
+      text: 'Aloha Isle',
+      alignment: 'below',
+    },
+  }, {
+    type: 'stop',
+    x: -16,
     y: 45,
     orientation: 'up',
     label: {
@@ -379,7 +400,7 @@ export default [{
     },
   }, {
     type: 'stop',
-    x: -18,
+    x: -10,
     y: 45,
     orientation: 'down',
     label: {
@@ -423,7 +444,7 @@ export default [{
     x: 30,
     y: -5,
     label: {
-      text: 'Cinderella\'s\nRoyal Table',
+      text: "Cinderella's Royal Table",
       alignment: 'right',
     },
   }, {
@@ -431,7 +452,7 @@ export default [{
     x: 30,
     y: -10,
     label: {
-      text: 'Prince Charming Carousel',
+      text: 'Prince Charming Regal Carrousel',
       alignment: 'right',
     },
   }, {
@@ -448,7 +469,7 @@ export default [{
     y: -25,
     orientation: 'up',
     label: {
-      text: 'Enchanted\nTales',
+      text: 'Enchanted Tales\nwith Belle',
       alignment: 'above',
     },
   }, {
@@ -466,7 +487,7 @@ export default [{
     y: -25,
     orientation: 'up',
     label: {
-      text: 'Gaston\'s\nTavern',
+      text: "Gaston's\nTavern",
       alignment: 'above',
     },
   }, {
@@ -502,7 +523,7 @@ export default [{
     y: -25,
     orientation: 'up',
     label: {
-      text: 'Pete\'s Silly\nSideshow',
+      text: "Pete's Silly\nSideshow",
       alignment: 'above',
     },
   }, {
@@ -603,7 +624,7 @@ export default [{
     y: -25,
     orientation: 'up',
     label: {
-      text: 'Peter Pan\'s\nFlight',
+      text: "Peter Pan's\nFlight",
       alignment: 'above',
     },
   }, {
