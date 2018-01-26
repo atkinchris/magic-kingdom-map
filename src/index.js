@@ -14,7 +14,7 @@ extras.forEach(extra => buildExtra(map, extra))
 
 const { x, y, width, height } = map.bbox()
 map.dmove(-x + SIZE_UNIT, -y + (SIZE_UNIT * 2))
-svg.size(width + SIZE_UNIT, height + (SIZE_UNIT * 4))
+svg.size(width + (SIZE_UNIT * 2), height + (SIZE_UNIT * 4))
 
 buildLegend(svg, legend, { x: width, y: height })
 buildSaveButton(svg)

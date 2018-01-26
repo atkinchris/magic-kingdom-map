@@ -1,12 +1,13 @@
-import FileSaver from 'file-saver'
+import { saveSvgAsPng } from 'save-svg-as-png'
 
 const buildSaveButton = (svg) => {
-  document.getElementById('save-button').onclick = () => {
-    const data = svg.svg()
-    const blob = new Blob([data], { type: 'image/svg+xml;charset=utf-8' })
-
-    FileSaver.saveAs(blob, 'magic-kingdom.svg')
+  const options = {
+    backgroundColor: 'white',
+    scale: 4,
   }
+  const onClick = () => saveSvgAsPng(svg.node, 'map.png', options)
+
+  document.getElementById('save-button').onclick = onClick
 }
 
 export default buildSaveButton
