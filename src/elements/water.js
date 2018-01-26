@@ -3,13 +3,18 @@ import { SIZE_UNIT } from '../constants'
 const RADIUS = 2.5 * SIZE_UNIT
 
 const buildWater = (map, rawPoints) => {
-  const points = rawPoints.map(([x, y]) => [x * SIZE_UNIT, y * SIZE_UNIT])
-  const path = points.reduce((out, [x, y], index, arr) => {
+  const points = rawPoints.map(([x, y, hard]) => [x * SIZE_UNIT, y * SIZE_UNIT, hard])
+  const path = points.reduce((out, [x, y, hard], index, arr) => {
     const [previousX, previousY] = arr[index - 1] || arr[arr.length - 1]
     const [nextX, nextY] = arr[index + 1] || arr[0]
 
     if (index === 0) {
       out.push(`M${x + RADIUS} ${y}`)
+      return out
+    }
+
+    if (hard) {
+      out.push(`L${x} ${y}`)
       return out
     }
 
