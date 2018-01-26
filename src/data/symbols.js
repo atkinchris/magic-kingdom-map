@@ -10,4 +10,8 @@ export default [{
   x: -54.5,
   y: 22,
   symbol: 'rail',
+}, {
+  x: -42.5,
+  y: 20,
+  symbol: 'station-join',
 }]

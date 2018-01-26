@@ -16,8 +16,12 @@ const buildSymbol = (map, { x, y, symbol }) => {
     group.scale(0.4)
   }
 
-  // <path d="M1,-8.9 46,12.4 16,26.6 61,47.9" stroke-width="6"/>
-  // <path d="M0,12.4H62m0,14.2H0" stroke-width="6.4"/>
+  if (symbol === 'station-join') {
+    group.rect(SIZE_UNIT * 3, SIZE_UNIT * 2.5).dx(SIZE_UNIT)
+    group.rect(SIZE_UNIT * 5, SIZE_UNIT).dy(SIZE_UNIT * 0.75).fill('white')
+
+    group.center(mapX, mapY)
+  }
 }
 
 export default buildSymbol
