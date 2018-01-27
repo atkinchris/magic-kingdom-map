@@ -2,11 +2,11 @@ import SVG from 'svg.js'
 
 import { lines, water, extras } from './data'
 import { buildLine, buildWater, buildExtra, buildLegend, buildSaveButton } from './elements'
-import { SIZE_UNIT, FONT } from './constants'
+import { FONT } from './constants'
 
 const build = () => {
   const svg = SVG('map')
-  const map = svg.nested()
+  const map = svg.group()
   const legend = lines.filter(line => line.name).map(({ name, color }) => ({ name, color }))
 
   water.forEach(w => buildWater(map, w))
@@ -14,8 +14,8 @@ const build = () => {
   extras.forEach(extra => buildExtra(map, extra))
   buildLegend(map, legend)
 
-  svg.size(map.rbox().width + (SIZE_UNIT * 2), map.rbox().height + (SIZE_UNIT * 2))
-  map.move(-map.rbox().x, -map.rbox().y + SIZE_UNIT)
+  svg.viewbox(map.bbox())
+  svg.size(window.innerWidth - FONT.size, window.innerHeight - FONT.size)
 
   buildSaveButton(svg)
 }
