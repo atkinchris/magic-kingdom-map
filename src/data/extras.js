@@ -22,7 +22,7 @@ export default [{
   type: 'station-join',
 }, {
   x: -19,
-  y: -14,
+  y: -13,
   type: 'label',
-  text: "River's\nof America",
+  text: 'Rivers\nof America',
 }]
