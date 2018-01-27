@@ -1,23 +1,26 @@
 import { SIZE_UNIT, FONT } from '../constants'
 
-const buildStop = (group, point, color) => {
-  const { x, y, orientation = 'right', label } = point
-  const stop = group.rect(SIZE_UNIT * 2, SIZE_UNIT).move(x, y)
+const PADDING = SIZE_UNIT / 2
 
+const buildStop = (map, point, color) => {
+  const { x, y, orientation = 'right', label } = point
+
+  const stop = map.rect(SIZE_UNIT * 2, SIZE_UNIT).center(x, y)
+  stop.dx(stop.bbox().width / 4)
   stop.fill(color)
 
   switch (orientation) {
     case 'right':
-      stop.dx(-SIZE_UNIT / 2)
+      stop.rotate(0, x, y)
       break
     case 'left':
-      stop.dx(-SIZE_UNIT / 2).rotate(180, x)
+      stop.rotate(180, x, y)
       break
     case 'up':
-      stop.dy(-SIZE_UNIT / 2).rotate(-90, x, y + (SIZE_UNIT / 2))
+      stop.rotate(-90, x, y)
       break
     case 'down':
-      stop.dy(-SIZE_UNIT / 2).rotate(90, x, y - (SIZE_UNIT / 2))
+      stop.rotate(90, x, y)
       break
     default:
       break
@@ -25,32 +28,26 @@ const buildStop = (group, point, color) => {
 
   if (label && label.text) {
     const { text, alignment } = label
-    const labelElement = group.text(text).move(x, y).font(FONT)
-    const leading = labelElement.leading().value
-    const lines = labelElement.lines().length()
-    const height = leading * lines
+    const labelElement = map.text(text).font(FONT).center(x, y)
 
     switch (alignment) {
       case 'right':
         labelElement.font({ anchor: 'start' })
-        labelElement.dx(SIZE_UNIT * 2.5)
-        labelElement.dy(-SIZE_UNIT * height)
+        labelElement.x(stop.rbox().x2 + PADDING)
         break
       case 'left':
         labelElement.font({ anchor: 'end' })
-        labelElement.dx(-SIZE_UNIT * 2.5)
-        labelElement.dy(-SIZE_UNIT * height)
+        labelElement.x(stop.rbox().x - PADDING)
         break
       case 'below':
         labelElement.font({ anchor: 'middle' })
-        labelElement.dx(-SIZE_UNIT / 2)
-        labelElement.dy(SIZE_UNIT * 2)
+        labelElement.y(stop.rbox().y2 + PADDING)
+        labelElement.x(x)
         break
       case 'above':
         labelElement.font({ anchor: 'middle' })
-        labelElement.dx(-SIZE_UNIT / 2)
-        labelElement.dy(-SIZE_UNIT * 5)
-        labelElement.dy(-height * SIZE_UNIT * 1.2)
+        labelElement.y(stop.rbox().y - labelElement.rbox().height - PADDING)
+        labelElement.x(x)
         break
       default:
         break

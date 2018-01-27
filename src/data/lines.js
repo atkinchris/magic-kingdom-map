@@ -225,10 +225,6 @@ export default [{
     x: 11,
     y: 9.5,
     orientation: 'down',
-    label: {
-      text: 'Christmas\nShoppe',
-      alignment: 'below',
-    },
   }, {
     type: 'stop',
     x: 5,
@@ -316,6 +312,10 @@ export default [{
     x: 11,
     y: 9.5,
     orientation: 'down',
+    label: {
+      text: 'Christmas\nShoppe',
+      alignment: 'below',
+    },
   }, {
     type: 'point',
     x: -5,
