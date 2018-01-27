@@ -1,4 +1,5 @@
-import { SIZE_UNIT, FONT, PADDING } from '../constants'
+import { SIZE_UNIT } from '../constants'
+import buildLabel from './label'
 
 const buildStop = (map, point, color) => {
   const { x, y, orientation = 'right', label } = point
@@ -24,33 +25,7 @@ const buildStop = (map, point, color) => {
       break
   }
 
-  if (label && label.text) {
-    const { text, alignment } = label
-    const labelElement = map.text(text).font(FONT).center(x, y)
-
-    switch (alignment) {
-      case 'right':
-        labelElement.font({ anchor: 'start' })
-        labelElement.x(element.rbox().x2 + PADDING)
-        break
-      case 'left':
-        labelElement.font({ anchor: 'end' })
-        labelElement.x(element.rbox().x - PADDING)
-        break
-      case 'below':
-        labelElement.font({ anchor: 'middle' })
-        labelElement.y(element.rbox().y2 + PADDING)
-        labelElement.x(x)
-        break
-      case 'above':
-        labelElement.font({ anchor: 'middle' })
-        labelElement.y(element.rbox().y - labelElement.rbox().height - PADDING)
-        labelElement.x(x)
-        break
-      default:
-        break
-    }
-  }
+  buildLabel(map, element, label)
 
   return element
 }
