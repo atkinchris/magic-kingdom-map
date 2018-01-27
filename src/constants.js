@@ -1,5 +1,6 @@
 export const SIZE_UNIT = 8
 export const PADDING = SIZE_UNIT / 2
+export const RADIUS = SIZE_UNIT * 2
 export const FONT = {
   size: 14,
   family: 'Roboto Condensed',

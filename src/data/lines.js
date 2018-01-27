@@ -79,20 +79,13 @@ export default [{
     type: 'point',
     x: 30,
     y: 10,
+    hard: true,
   }, {
     type: 'point',
-    x: 40,
-    y: 10,
-  }, {
-    type: 'corner',
     x: 45,
     y: 10,
   }, {
     type: 'point',
-    x: 45,
-    y: 15,
-  }, {
-    type: 'corner',
     x: 45,
     y: 20,
   }, {
@@ -133,16 +126,8 @@ export default [{
     },
   }, {
     type: 'point',
-    x: 80,
-    y: 20,
-  }, {
-    type: 'corner',
     x: 85,
     y: 20,
-  }, {
-    type: 'point',
-    x: 85,
-    y: 15,
   }, {
     type: 'stop',
     x: 85,
@@ -178,13 +163,9 @@ export default [{
     x: 80,
     y: 20,
   }, {
-    type: 'corner',
-    x: 85,
-    y: 20,
-  }, {
     type: 'point',
     x: 85,
-    y: 25,
+    y: 20,
   }, {
     type: 'endcap',
     x: 85,
@@ -238,6 +219,7 @@ export default [{
     type: 'point',
     x: -5,
     y: 9.5,
+    hard: true,
   }, {
     type: 'endcap',
     x: -5,
@@ -270,6 +252,7 @@ export default [{
     type: 'point',
     x: -40,
     y: 19.5,
+    hard: true,
   }, {
     type: 'stop',
     x: -40,
@@ -320,17 +303,10 @@ export default [{
     type: 'point',
     x: -5,
     y: 9.5,
+    hard: true,
   }, {
     type: 'point',
     x: -5,
-    y: 15,
-  }, {
-    type: 'corner',
-    x: -5,
-    y: 19.5,
-  }, {
-    type: 'point',
-    x: -10,
     y: 19.5,
   }, {
     type: 'stop',
@@ -354,12 +330,9 @@ export default [{
     type: 'point',
     x: -40,
     y: 19.5,
+    hard: true,
   }, {
     type: 'point',
-    x: -40,
-    y: 40,
-  }, {
-    type: 'corner',
     x: -40,
     y: 45,
   }, {
@@ -409,16 +382,8 @@ export default [{
     },
   }, {
     type: 'point',
-    x: -10,
-    y: 45,
-  }, {
-    type: 'corner',
     x: -5,
     y: 45,
-  }, {
-    type: 'point',
-    x: -5,
-    y: 40,
   }, {
     type: 'endcap',
     x: -5,
@@ -457,10 +422,6 @@ export default [{
     },
   }, {
     type: 'point',
-    x: 30,
-    y: -20,
-  }, {
-    type: 'corner',
     x: 30,
     y: -25,
   }, {
@@ -551,20 +512,12 @@ export default [{
     x: 35,
     y: -25,
   }, {
-    type: 'corner',
+    type: 'point',
     x: 40,
     y: -25,
   }, {
     type: 'point',
     x: 40,
-    y: -20,
-  }, {
-    type: 'corner',
-    x: 40,
-    y: -15,
-  }, {
-    type: 'point',
-    x: 45,
     y: -15,
   }, {
     type: 'stop',
@@ -577,26 +530,10 @@ export default [{
     },
   }, {
     type: 'point',
-    x: 55,
-    y: -15,
-  }, {
-    type: 'corner',
-    x: 55,
-    y: -15,
-  }, {
-    type: 'point',
-    x: 55,
-    y: -15,
-  }, {
-    type: 'corner',
     x: 60,
     y: -15,
   }, {
     type: 'point',
-    x: 60,
-    y: -20,
-  }, {
-    type: 'corner',
     x: 60,
     y: -25,
   }, {
@@ -611,12 +548,8 @@ export default [{
     x: 30,
     y: -20,
   }, {
-    type: 'corner',
-    x: 30,
-    y: -25,
-  }, {
     type: 'point',
-    x: 25,
+    x: 30,
     y: -25,
   }, {
     type: 'stop',
@@ -644,38 +577,19 @@ export default [{
     type: 'point',
     x: 30,
     y: 55,
+    hard: true,
   }, {
     type: 'point',
-    x: 15,
-    y: 55,
-  }, {
-    type: 'corner',
     x: 10,
     y: 55,
   }, {
     type: 'point',
     x: 10,
-    y: 60,
-  }, {
-    type: 'corner',
-    x: 10,
-    y: 65,
-  }, {
-    type: 'point',
-    x: 5,
-    y: 65,
-  }, {
-    type: 'point',
-    x: -40,
-    y: 65,
-  }, {
-    type: 'corner',
-    x: -45,
     y: 65,
   }, {
     type: 'point',
     x: -45,
-    y: 60,
+    y: 65,
   }, {
     type: 'station',
     x: -45,
@@ -687,42 +601,14 @@ export default [{
   }, {
     type: 'point',
     x: -45,
-    y: -35,
-  }, {
-    type: 'corner',
-    x: -45,
     y: -40,
   }, {
     type: 'point',
-    x: -40,
-    y: -40,
-  }, {
-    type: 'point',
-    x: 90,
-    y: -40,
-  }, {
-    type: 'corner',
     x: 95,
     y: -40,
   }, {
     type: 'point',
     x: 95,
-    y: -35,
-  }, {
-    type: 'point',
-    x: 95,
-    y: -25,
-  }, {
-    type: 'point',
-    x: 95,
-    y: 50,
-  }, {
-    type: 'corner',
-    x: 95,
-    y: 55,
-  }, {
-    type: 'point',
-    x: 90,
     y: 55,
   }, {
     type: 'point',
