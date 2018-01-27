@@ -293,7 +293,7 @@ export default [{
     y: 0,
     label: {
       text: 'Big Thunder\nMountain',
-      alignment: 'above',
+      alignment: 'right',
     },
   }],
 }, {
