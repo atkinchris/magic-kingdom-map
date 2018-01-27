@@ -1,8 +1,8 @@
 import { SIZE_UNIT, FONT } from '../constants'
 
-const buildLegend = (svg, legend, position) => {
-  const group = svg.group()
-  const { x, y } = position
+const buildLegend = (map, legend) => {
+  const group = map.group()
+  const { x2: x, y2: y } = map.rbox()
 
   legend.forEach(({ name, color }, index) => {
     const entry = group.group()
@@ -24,10 +24,8 @@ const buildLegend = (svg, legend, position) => {
       .dx(dx)
   })
 
-  const { width, height } = group.bbox()
-  group.move(Math.floor(x - width), Math.floor(y - height))
-  group.dy(SIZE_UNIT * 4)
-  group.dx(-SIZE_UNIT * 8)
+  group.x(x - group.rbox().width)
+  group.cy(y)
 }
 
 export default buildLegend
