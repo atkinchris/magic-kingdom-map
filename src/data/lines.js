@@ -505,7 +505,7 @@ export default [{
     y: -25,
     orientation: 'up',
     label: {
-      text: 'Big Top\nSouveniers',
+      text: 'Big Top\nSouvenirs',
       alignment: 'above',
     },
   }, {
