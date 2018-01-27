@@ -2,7 +2,7 @@ import SVG from 'svg.js'
 
 import { lines, water, extras } from './data'
 import { buildLine, buildWater, buildExtra, buildLegend, buildSaveButton } from './elements'
-import { FONT } from './constants'
+import { FONT, SIZE_UNIT } from './constants'
 
 const build = () => {
   const svg = SVG('map')
@@ -14,8 +14,15 @@ const build = () => {
   extras.forEach(extra => buildExtra(map, extra))
   buildLegend(map, legend)
 
-  svg.viewbox(map.bbox())
-  svg.size(window.innerWidth - FONT.size, window.innerHeight - FONT.size)
+  const { x, y, width, height } = map.bbox()
+  const margin = FONT.size * 8
+  svg.viewbox({
+    x: x - SIZE_UNIT,
+    y: y - SIZE_UNIT,
+    width: width + SIZE_UNIT,
+    height: height + SIZE_UNIT,
+  })
+  svg.size(window.innerWidth - margin, window.innerHeight - margin)
 
   buildSaveButton(svg)
 }
