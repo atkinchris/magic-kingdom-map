@@ -6,7 +6,7 @@ const smoothPath = (points, radius = RADIUS) => {
   const closedPath = (
     first[0] === last[0] &&
     first[1] === last[1] &&
-    !first[2] && !first[3]
+    !first[2] && !last[2]
   )
 
   return points.reduce((out, [x, y, hard], index, arr) => {
@@ -30,7 +30,7 @@ const smoothPath = (points, radius = RADIUS) => {
     ) {
       out.push(`L${x} ${y}`)
 
-      if (!closedPath) {
+      if (!closedPath || index !== arr.length - 1) {
         return out
       }
     }
