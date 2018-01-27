@@ -1,11 +1,11 @@
-import { saveSvgAsPng } from 'save-svg-as-png'
+import { saveAs } from 'file-saver'
 
-const buildSaveButton = (svg) => {
-  const options = {
-    backgroundColor: 'white',
-    scale: 4,
+const buildSaveButton = (map) => {
+  const onClick = () => {
+    const svgData = map.svg()
+    const blob = new Blob([svgData], { type: 'image/svg+xml' })
+    saveAs(blob, 'map.svg')
   }
-  const onClick = () => saveSvgAsPng(svg.node, 'map.png', options)
 
   document.getElementById('save-button').onclick = onClick
 }
