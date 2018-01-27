@@ -1,26 +1,24 @@
-import { SIZE_UNIT, FONT } from '../constants'
-
-const PADDING = SIZE_UNIT / 2
+import { SIZE_UNIT, FONT, PADDING } from '../constants'
 
 const buildStop = (map, point, color) => {
   const { x, y, orientation = 'right', label } = point
 
-  const stop = map.rect(SIZE_UNIT * 2, SIZE_UNIT).center(x, y)
-  stop.dx(stop.bbox().width / 4)
-  stop.fill(color)
+  const element = map.rect(SIZE_UNIT * 2, SIZE_UNIT).center(x, y)
+  element.dx(element.bbox().width / 4)
+  element.fill(color)
 
   switch (orientation) {
     case 'right':
-      stop.rotate(0, x, y)
+      element.rotate(0, x, y)
       break
     case 'left':
-      stop.rotate(180, x, y)
+      element.rotate(180, x, y)
       break
     case 'up':
-      stop.rotate(-90, x, y)
+      element.rotate(-90, x, y)
       break
     case 'down':
-      stop.rotate(90, x, y)
+      element.rotate(90, x, y)
       break
     default:
       break
@@ -33,20 +31,20 @@ const buildStop = (map, point, color) => {
     switch (alignment) {
       case 'right':
         labelElement.font({ anchor: 'start' })
-        labelElement.x(stop.rbox().x2 + PADDING)
+        labelElement.x(element.rbox().x2 + PADDING)
         break
       case 'left':
         labelElement.font({ anchor: 'end' })
-        labelElement.x(stop.rbox().x - PADDING)
+        labelElement.x(element.rbox().x - PADDING)
         break
       case 'below':
         labelElement.font({ anchor: 'middle' })
-        labelElement.y(stop.rbox().y2 + PADDING)
+        labelElement.y(element.rbox().y2 + PADDING)
         labelElement.x(x)
         break
       case 'above':
         labelElement.font({ anchor: 'middle' })
-        labelElement.y(stop.rbox().y - labelElement.rbox().height - PADDING)
+        labelElement.y(element.rbox().y - labelElement.rbox().height - PADDING)
         labelElement.x(x)
         break
       default:
@@ -54,7 +52,7 @@ const buildStop = (map, point, color) => {
     }
   }
 
-  return stop
+  return element
 }
 
 export default buildStop
