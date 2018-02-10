@@ -12,16 +12,25 @@ export default [{
   }, {
     type: 'stop',
     x: 30,
-    y: 32,
-    orientation: 'left',
+    y: 31,
+    orientation: 'right',
     label: {
-      text: 'Crystal Palace',
-      alignment: 'left',
+      text: 'Partners Statue',
+      alignment: 'right',
     },
   }, {
     type: 'stop',
     x: 30,
-    y: 40,
+    y: 37,
+    orientation: 'right',
+    label: {
+      text: "Walt's Window",
+      alignment: 'right',
+    },
+  }, {
+    type: 'stop',
+    x: 30,
+    y: 39,
     orientation: 'left',
     label: {
       text: "Casey's Corner",
@@ -30,16 +39,16 @@ export default [{
   }, {
     type: 'stop',
     x: 30,
-    y: 45,
+    y: 43,
     orientation: 'right',
     label: {
-      text: 'Main Street Bakery',
+      text: 'Main Street Confectionary',
       alignment: 'right',
     },
   }, {
     type: 'stop',
     x: 30,
-    y: 47,
+    y: 45,
     orientation: 'left',
     label: {
       text: 'Emporium',
@@ -99,7 +108,7 @@ export default [{
     },
   }, {
     type: 'stop',
-    x: 63,
+    x: 59,
     y: 20,
     orientation: 'up',
     label: {
@@ -108,7 +117,7 @@ export default [{
     },
   }, {
     type: 'stop',
-    x: 70,
+    x: 65,
     y: 20,
     orientation: 'down',
     label: {
@@ -117,11 +126,11 @@ export default [{
     },
   }, {
     type: 'stop',
-    x: 77,
+    x: 75,
     y: 20,
     orientation: 'up',
     label: {
-      text: 'Astro Orbiter\nPeople Mover',
+      text: 'Tomorrowland Transit\n Authority PeopleMover',
       alignment: 'above',
     },
   }, {
@@ -191,11 +200,11 @@ export default [{
   points: [{
     type: 'point',
     x: 30,
-    y: 9.5,
+    y: 10,
   }, {
     type: 'stop',
-    x: 17,
-    y: 9.5,
+    x: 15,
+    y: 10,
     orientation: 'up',
     label: {
       text: 'Hall of\nPresidents',
@@ -203,13 +212,17 @@ export default [{
     },
   }, {
     type: 'stop',
-    x: 11,
-    y: 9.5,
+    x: 9,
+    y: 10,
     orientation: 'down',
+    label: {
+      text: 'The Muppets\nPresent...',
+      alignment: 'below',
+    },
   }, {
     type: 'stop',
-    x: 5,
-    y: 9.5,
+    x: 3,
+    y: 10,
     orientation: 'up',
     label: {
       text: 'Liberty Tree\nTavern',
@@ -218,14 +231,22 @@ export default [{
   }, {
     type: 'point',
     x: -5,
-    y: 9.5,
+    y: 10,
     hard: true,
+  }, {
+    type: 'stop',
+    x: -5,
+    y: -5,
+    label: {
+      text: 'Memento Mori',
+      alignment: 'right',
+    },
   }, {
     type: 'endcap',
     x: -5,
-    y: -15,
+    y: -11,
     label: {
-      text: 'Haunted Mansion',
+      text: 'The Haunted\nMansion',
       alignment: 'right',
     },
   }],
@@ -239,19 +260,50 @@ export default [{
   name: 'Frontierland',
   color: '#b15e00',
   points: [{
+    type: 'point',
+    x: -5,
+    y: 10,
+  }, {
+    type: 'point',
+    x: -5,
+    y: 20,
+  }, {
     type: 'stop',
     x: -20,
-    y: 19.5,
+    y: 20,
+    orientation: 'down',
+    label: {
+      text: 'Country Bear\nJamboree',
+      alignment: 'below',
+    },
+  }, {
+    type: 'stop',
+    x: -30,
+    y: 20,
+    orientation: 'down',
+    label: {
+      text: 'Pecos Bill\nTall Tale Inn',
+      alignment: 'below',
+    },
+  }, {
+    type: 'point',
+    x: -40,
+    y: 20,
+    hard: true,
+  }, {
+    type: 'stop',
+    x: -20,
+    y: 20,
     orientation: 'down',
   }, {
     type: 'stop',
     x: -30,
-    y: 19.5,
+    y: 20,
     orientation: 'down',
   }, {
     type: 'point',
     x: -40,
-    y: 19.5,
+    y: 20,
     hard: true,
   }, {
     type: 'stop',
@@ -275,70 +327,26 @@ export default [{
     x: -40,
     y: 0,
     label: {
-      text: 'Big Thunder\nMountain',
+      text: 'Big Thunder\nMountain Railroad',
       alignment: 'right',
     },
   }],
 }, {
   name: 'Adventureland',
   color: '#00853d',
-  offset: {
-    y: 1,
-    x: 0,
-  },
   points: [{
     type: 'point',
-    x: 30,
-    y: 9.5,
-  }, {
-    type: 'stop',
-    x: 11,
-    y: 9.5,
-    orientation: 'down',
-    label: {
-      text: 'Christmas\nShoppe',
-      alignment: 'below',
-    },
-  }, {
-    type: 'point',
-    x: -5,
-    y: 9.5,
-    hard: true,
-  }, {
-    type: 'point',
-    x: -5,
-    y: 19.5,
-  }, {
-    type: 'stop',
-    x: -20,
-    y: 19.5,
-    orientation: 'down',
-    label: {
-      text: 'Country Bear\nJamboree',
-      alignment: 'below',
-    },
-  }, {
-    type: 'stop',
-    x: -30,
-    y: 19.5,
-    orientation: 'down',
-    label: {
-      text: 'Pecos Bill\nTall Tale Inn',
-      alignment: 'below',
-    },
-  }, {
-    type: 'point',
     x: -40,
-    y: 19.5,
+    y: 20,
     hard: true,
   }, {
     type: 'point',
     x: -40,
-    y: 45,
+    y: 47,
   }, {
     type: 'stop',
     x: -35,
-    y: 45,
+    y: 47,
     orientation: 'down',
     label: {
       text: 'Pirates of\nthe Caribbean',
@@ -347,7 +355,7 @@ export default [{
   }, {
     type: 'stop',
     x: -30,
-    y: 45,
+    y: 47,
     orientation: 'up',
     label: {
       text: 'Tortuga\nTavern',
@@ -356,7 +364,7 @@ export default [{
   }, {
     type: 'stop',
     x: -23,
-    y: 45,
+    y: 47,
     orientation: 'down',
     label: {
       text: 'Aloha Isle',
@@ -365,7 +373,7 @@ export default [{
   }, {
     type: 'stop',
     x: -16,
-    y: 45,
+    y: 47,
     orientation: 'up',
     label: {
       text: 'Enchanted\nTiki Room',
@@ -374,7 +382,7 @@ export default [{
   }, {
     type: 'stop',
     x: -10,
-    y: 45,
+    y: 47,
     orientation: 'down',
     label: {
       text: 'Jungle Cruise',
@@ -383,7 +391,16 @@ export default [{
   }, {
     type: 'point',
     x: -5,
-    y: 45,
+    y: 47,
+  }, {
+    type: 'stop',
+    x: -5,
+    y: 37,
+    orientation: 'left',
+    label: {
+      text: 'Sunshine Seasons',
+      alignment: 'left',
+    },
   }, {
     type: 'endcap',
     x: -5,
@@ -415,9 +432,19 @@ export default [{
   }, {
     type: 'stop',
     x: 30,
-    y: -10,
+    y: -8,
+    orientation: 'left',
     label: {
-      text: 'Prince Charming Regal Carrousel',
+      text: 'Prince Charming\nRegal Carrousel',
+      alignment: 'left',
+    },
+  }, {
+    type: 'stop',
+    x: 30,
+    y: -11,
+    orientation: 'right',
+    label: {
+      text: "Mickey's PhilharMagic",
       alignment: 'right',
     },
   }, {
@@ -522,23 +549,32 @@ export default [{
   }, {
     type: 'stop',
     orientation: 'up',
-    x: 50,
+    x: 47,
     y: -15,
     label: {
       text: 'Seven Dwarfs\nMine Train',
       alignment: 'above',
     },
   }, {
+    type: 'stop',
+    orientation: 'up',
+    x: 61,
+    y: -15,
+    label: {
+      text: 'The Many Adventures\nof Winnie the Pooh',
+      alignment: 'above',
+    },
+  }, {
     type: 'point',
-    x: 60,
+    x: 70,
     y: -15,
   }, {
     type: 'point',
-    x: 60,
+    x: 70,
     y: -25,
   }, {
     type: 'point',
-    x: 65,
+    x: 75,
     y: -25,
   }],
 }, {
