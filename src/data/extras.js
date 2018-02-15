@@ -1,15 +1,25 @@
 export default [{
-  x: 96.5,
-  y: -23,
+  x: 72,
+  y: -52,
   type: 'rail-symbol',
 }, {
-  x: 41,
-  y: 49.1,
+  x: 18,
+  y: 28.5,
   type: 'rail-symbol',
 }, {
-  x: -54.5,
-  y: 22,
+  x: -76,
+  y: -7,
   type: 'rail-symbol',
+}, {
+  x: 48,
+  y: 59.4,
+  type: 'monorail-symbol',
+}, {
+  x: 46,
+  y: 61,
+  type: 'label',
+  anchor: 'start',
+  text: 'Monorail services to\nparks and resorts',
 }, {
   x: -42.5,
   y: 20,

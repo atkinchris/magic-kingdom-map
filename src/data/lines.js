@@ -656,7 +656,7 @@ export default [{
   dashed: true,
   points: [{
     type: 'point',
-    x: 18,
+    x: 22,
     y: 61,
   }, {
     type: 'station',
@@ -664,7 +664,7 @@ export default [{
     y: 61,
   }, {
     type: 'point',
-    x: 50,
+    x: 38,
     y: 61,
   }],
 }]
