@@ -19,7 +19,7 @@ const build = () => {
   svg.viewbox({
     x: x - SIZE_UNIT,
     y: y - SIZE_UNIT,
-    width: width + SIZE_UNIT,
+    width: width + (SIZE_UNIT * 3),
     height: height + SIZE_UNIT,
   })
   svg.size(window.innerWidth - margin, window.innerHeight - margin)
