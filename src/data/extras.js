@@ -3,8 +3,8 @@ export default [{
   y: -23,
   type: 'rail-symbol',
 }, {
-  x: 32,
-  y: 58.5,
+  x: 41,
+  y: 49.1,
   type: 'rail-symbol',
 }, {
   x: -54.5,
@@ -18,6 +18,11 @@ export default [{
 }, {
   x: 30,
   y: 7.5,
+  orientation: 'vertical',
+  type: 'station-join',
+}, {
+  x: 30,
+  y: 58,
   orientation: 'vertical',
   type: 'station-join',
 }, {

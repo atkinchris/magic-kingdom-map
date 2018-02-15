@@ -12,7 +12,7 @@ export default [{
   }, {
     type: 'stop',
     x: 30,
-    y: 31,
+    y: 27,
     orientation: 'right',
     label: {
       text: 'Partners Statue',
@@ -21,7 +21,7 @@ export default [{
   }, {
     type: 'stop',
     x: 30,
-    y: 37,
+    y: 33,
     orientation: 'right',
     label: {
       text: "Walt's Window",
@@ -30,7 +30,7 @@ export default [{
   }, {
     type: 'stop',
     x: 30,
-    y: 39,
+    y: 35,
     orientation: 'left',
     label: {
       text: "Casey's Corner",
@@ -39,7 +39,7 @@ export default [{
   }, {
     type: 'stop',
     x: 30,
-    y: 43,
+    y: 39,
     orientation: 'right',
     label: {
       text: 'Main Street Confectionary',
@@ -48,7 +48,7 @@ export default [{
   }, {
     type: 'stop',
     x: 30,
-    y: 45,
+    y: 41,
     orientation: 'left',
     label: {
       text: 'Emporium',
@@ -57,7 +57,7 @@ export default [{
   }, {
     type: 'stop',
     x: 30,
-    y: 49,
+    y: 45,
     orientation: 'right',
     label: {
       text: 'Town Square Theatre',
@@ -66,7 +66,7 @@ export default [{
   }, {
     type: 'stop',
     x: 30,
-    y: 51,
+    y: 47,
     orientation: 'left',
     label: {
       text: 'City Hall',
@@ -77,8 +77,8 @@ export default [{
     x: 30,
     y: 55,
     label: {
-      text: 'WDW\nRailroad',
-      alignment: 'below',
+      text: 'WDW Railroad',
+      alignment: 'above,right',
     },
   }],
 }, {
@@ -650,5 +650,21 @@ export default [{
     type: 'point',
     x: 30,
     y: 55,
+  }],
+}, {
+  color: '#939ba1',
+  dashed: true,
+  points: [{
+    type: 'point',
+    x: 18,
+    y: 61,
+  }, {
+    type: 'station',
+    x: 30,
+    y: 61,
+  }, {
+    type: 'point',
+    x: 50,
+    y: 61,
   }],
 }]
