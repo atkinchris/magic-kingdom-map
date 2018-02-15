@@ -37,6 +37,19 @@ const buildExtra = (map, extra) => {
     group.scale(0.3)
   }
 
+  if (type === 'gradient') {
+    const { from, to, width, height, opacity } = extra
+    const gradient = group.gradient('linear', (stop) => {
+      stop.at(0, from)
+      stop.at(1, to)
+    })
+    group
+      .rect(SIZE_UNIT * width, SIZE_UNIT * height)
+      .fill(gradient)
+      .opacity(opacity)
+    group.move(mapX, mapY)
+  }
+
   if (type === 'label') {
     const { text, anchor = 'middle' } = extra
     group

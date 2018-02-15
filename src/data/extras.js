@@ -40,4 +40,13 @@ export default [{
   y: -13,
   type: 'label',
   text: 'Rivers\nof America',
+}, {
+  type: 'gradient',
+  from: '#ffffff',
+  to: '#c6ebfc',
+  x: -54,
+  y: -17,
+  width: 4,
+  height: 7,
+  opacity: 0.5,
 }]
