@@ -1,4 +1,4 @@
-import { SIZE_UNIT, MARGINS } from '../constants'
+import { SIZE_UNIT, MARGINS, FONT } from '../constants'
 
 const GRID_SIZE = SIZE_UNIT * 24
 
@@ -23,14 +23,40 @@ const buildGrid = (map) => {
     const position = i * GRID_SIZE
     const start = 0
     const end = rows * GRID_SIZE
-    grid.line(position, start, position, end).stroke(stroke)
+    grid.line(position, start, position, end).stroke(stroke).back()
+
+    if (i !== 0) {
+      grid
+        .rect(FONT.size * 1, FONT.size * 1.5)
+        .fill('white')
+        .center(position - (GRID_SIZE / 2), 0)
+      grid
+        .text(String(i))
+        .font(FONT)
+        .font('weight', 700)
+        .fill('#c6ebfc')
+        .center(position - (GRID_SIZE / 2), 0)
+    }
   }
 
   for (let i = 0; i <= rows; i += 1) {
     const position = i * GRID_SIZE
     const start = 0
     const end = columns * GRID_SIZE
-    grid.line(start, position, end, position).stroke(stroke)
+    grid.line(start, position, end, position).stroke(stroke).back()
+
+    if (i !== 0) {
+      grid
+        .rect(FONT.size * 1, FONT.size * 1.5)
+        .fill('white')
+        .center(0, position - (GRID_SIZE / 2))
+      grid
+        .text(String.fromCharCode(64 + i))
+        .font(FONT)
+        .font('weight', 700)
+        .fill('#c6ebfc')
+        .center(0, position - (GRID_SIZE / 2))
+    }
   }
 
   grid.dx(-(grid.bbox().width - absWidth) / 2)
