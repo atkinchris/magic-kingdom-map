@@ -25,7 +25,6 @@ const buildLegend = (map, legend) => {
   })
 
   group.x(x - group.rbox().width)
-  group.dx(-15)
   group.cy(y)
 }
 

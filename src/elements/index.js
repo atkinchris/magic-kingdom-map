@@ -6,6 +6,7 @@ import buildWater from './water'
 import buildExtra from './extra'
 import buildLegend from './legend'
 import buildSaveButton from './saveButton'
+import buildGrid from './grid'
 
 const buildElement = (group, element, color) => {
   const { type } = element
@@ -32,4 +33,5 @@ export {
   buildExtra,
   buildLegend,
   buildSaveButton,
+  buildGrid,
 }
